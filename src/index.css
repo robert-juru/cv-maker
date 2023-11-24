@@ -1,0 +1,165 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+* {
+  margin: 0;
+  padding: 0;
+}
+
+li,
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  line-height: 1.5;
+}
+
+button,
+input,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+}
+
+body {
+  background-color: #f3f4f6;
+}
+
+h1 {
+  margin: 16px 0px 16px 0px;
+  font-size: 32px;
+}
+
+section > article {
+  padding-bottom: 8px;
+}
+p {
+  hyphens: auto;
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  padding: 32px 72px;
+  gap: 72px;
+}
+
+.cv-preview {
+  background-color: white;
+  padding: 48px;
+  height: 29.7cm;
+  width: 21cm;
+}
+
+main > form {
+  background-color: white;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  padding: 16px;
+  border-radius: 0.5rem;
+}
+
+form > h2 {
+  margin-bottom: 16px;
+}
+
+label,
+input,
+textarea {
+  padding: 4px;
+  margin: 4px;
+}
+
+label {
+  font-weight: bold;
+}
+
+input,
+textarea {
+  border-radius: 0.5rem;
+}
+
+textarea {
+  resize: none;
+}
+
+.date-inputs {
+  display: flex;
+  gap: 16px;
+}
+
+.start-date-container,
+.end-date-container {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.resume-actions {
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.contact-container {
+  display: flex;
+  justify-content: center;
+  align-items: stretch;
+  gap: 8px;
+  margin-bottom: 12px;
+}
+
+.linkedin,
+.mail,
+.github,
+.phone-number {
+  display: flex;
+  align-items: center;
+}
+
+.name-container {
+  text-align: center;
+}
+
+.contact-icon {
+  width: 16px;
+  height: 16px;
+}
+
+.company-info,
+.institution-general,
+.institution-details,
+.job-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.job-duration,
+.job-position,
+.study-duration {
+  font-style: italic;
+}
+
+li {
+  padding-left: 16px;
+  list-style-position: inside;
+}
+.project-link {
+  padding-left: 16px;
+  letter-spacing: 1px;
+  line-height: normal;
+}
+.contact-icon {
+  margin-right: 4px;
+}
+
+
