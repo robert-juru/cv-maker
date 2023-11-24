@@ -125,6 +125,22 @@ textarea {
   align-items: center;
 }
 
+li {
+  padding-left: 16px;
+  list-style-position: inside;
+}
+
+a,
+a:link,
+a:visited {
+  text-decoration: none;
+  color:inherit;
+}
+
+a .underlined {
+  text-decoration: none;
+}
+
 .name-container {
   text-align: center;
 }
@@ -149,10 +165,6 @@ textarea {
   font-style: italic;
 }
 
-li {
-  padding-left: 16px;
-  list-style-position: inside;
-}
 .project-link {
   padding-left: 16px;
   letter-spacing: 1px;
@@ -161,5 +173,3 @@ li {
 .contact-icon {
   margin-right: 4px;
 }
-
-

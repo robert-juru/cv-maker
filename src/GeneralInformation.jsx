@@ -1,3 +1,4 @@
+
 export default function GeneralInformation() {
   return (
     <form className="general-information">
@@ -14,7 +15,7 @@ export default function GeneralInformation() {
           <input
             type="text"
             id="start-date"
-            placeholder="Enter your LinkedIn profile"
+            placeholder="LinkedIn profile URL"
           />
         </div>
         <div className="end-date-container">
@@ -22,7 +23,7 @@ export default function GeneralInformation() {
           <input
             type="text"
             id="end-date"
-            placeholder="Enter your GitHub profile"
+            placeholder="GitHub username"
           />
         </div>
       </div>
