@@ -14,7 +14,7 @@ const data = {
       school: "Academia de Studii Economice",
       degree: "Bachelor's Degree in Computer Science",
       relevantCoursework:
-        "Object-Oriented Programming, Database, Web Development, Algorithms",
+        "Object-Oriented Programming, Database, Web Development, Algorithms.",
       startDate: "Oct, 2020",
       endDate: "June, 2023",
       location: "Bucharest, Romania",
@@ -31,6 +31,7 @@ const data = {
     {
       jobTitle: "Junior Frontend Developer",
       companyName: "StellarTech Solutions",
+      companyLocation: "Bucharest, Romania",
       startDate: "July, 2021",
       endDate: "Present",
       jobDescription: [
