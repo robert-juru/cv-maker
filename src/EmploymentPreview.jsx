@@ -8,7 +8,7 @@ function renderEmployment() {
   return employment.map((job) => {
     jobIdCounter++;
     return (
-      <Fragment key={job.companyName + jobIdCounter}>
+      <div key={job.companyName + jobIdCounter} className="employment-info">
         <div className="company-info">
           <h3 className="company-name-cv">{job.companyName}</h3>
           <span className="company-location">{job.companyLocation}</span>
@@ -26,7 +26,7 @@ function renderEmployment() {
             </Fragment>
           ))}
         </div>
-      </Fragment>
+      </div>
     );
   });
 }
