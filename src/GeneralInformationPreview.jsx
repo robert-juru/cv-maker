@@ -1,11 +1,9 @@
-import data from "./data";
-let generalInformation = data.generalInformation;
 
-export default function GeneralInformationPreview() {
+export default function GeneralInformationPreview({ formData }) {
   return (
     <article className="general-information">
       <div className="name-container">
-        <h1 className="full-name">{generalInformation.fullName}</h1>
+        <h1 className="full-name">{formData.generalInformation.fullName}</h1>
       </div>
       <div className="contact-container">
         <a href="mailto:juru0188@gmail.com" className="mail">
@@ -14,10 +12,10 @@ export default function GeneralInformationPreview() {
             src="src\assets\mail2.svg"
             alt="mail icon"
           />
-          <span className="underlined">{generalInformation.email}</span>&nbsp;|
+          <span className="underlined">{formData.generalInformation.email}</span>&nbsp;|
         </a>
 
-        <a href={generalInformation.linkedIn} className="linkedin">
+        <a href={formData.generalInformation.linkedIn} className="linkedin">
           <img
             className="contact-icon"
             src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-plain.svg"
@@ -26,16 +24,13 @@ export default function GeneralInformationPreview() {
           <span className="underlined">LinkedIn Profile </span>&nbsp;|
         </a>
 
-        <a
-          href={"https://github.com/" + generalInformation.gitHub}
-          className="github"
-        >
+        <a href={"https://github.com/" + formData.generalInformation.gitHub} className="github">
           <img
             className="contact-icon"
             src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/github/github-original.svg"
             alt="github-icon"
           />
-          <span className="underlined">{generalInformation.gitHub}</span>&nbsp;|
+          <span className="underlined">{formData.generalInformation.gitHub}</span>&nbsp;|
         </a>
 
         <span className="phone-number">
@@ -44,10 +39,10 @@ export default function GeneralInformationPreview() {
             src="src\assets\phone.svg"
             alt="phone icon"
           />
-          <span>{generalInformation.phoneNumber}</span>
+          <span>{formData.generalInformation.phoneNumber}</span>
         </span>
       </div>
-      <p className="summary">{generalInformation.summary}</p>
+      <p className="summary">{formData.generalInformation.summary}</p>
     </article>
   );
 }

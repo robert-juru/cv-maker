@@ -98,7 +98,9 @@ textarea {
 }
 
 .start-date-container,
-.end-date-container {
+.end-date-container,
+.github-container,
+.linkedin-container {
   display: flex;
   flex-direction: column;
   flex: 1;
