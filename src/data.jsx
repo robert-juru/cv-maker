@@ -63,7 +63,8 @@ const data = {
     programmingLanguages: "HTML, CSS, JavaScript.",
     frameworksAndLibraries: "React, Tailwind, Redux, Lodash.",
     tools: "Git, VS Code, GitHub Actions, Figma.",
-    softSkills: "Problem-solving, time management, creativity, attention to detail."
+    softSkills:
+      "Problem-solving, time management, creativity, attention to detail.",
   },
 };
 

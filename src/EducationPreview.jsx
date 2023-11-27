@@ -2,8 +2,8 @@ import data from "./data";
 let education = data.education;
 let institutionIdCounter = 0;
 
-function renderEducation() {
-  return education.map((institution) => {
+export default function EducationPreview({ formData }) {
+  function renderEducation(institution) {
     institutionIdCounter++;
     return (
       <div
@@ -33,15 +33,16 @@ function renderEducation() {
         </div>
       </div>
     );
-  });
-}
+    // });
+  }
 
-export default function EducationPreview() {
   return (
     <article className="education-container">
       <h2>Education</h2>
       <hr />
-      {renderEducation()}
+      {formData.education.map((institution, index) => (
+        <div key={index}>{renderEducation(institution)}</div>
+      ))}
     </article>
   );
 }
