@@ -1,9 +1,12 @@
-export default function Education() {
+export default function Education({ formData, onFormDataChange, onInputChange }) {
   return (
     <form className="education">
       <h2>Education</h2>
       <label htmlFor="school">School</label>
       <input
+        value={formData.education.school}
+        onChange={(e) => onInputChange(e)}
+        name="school"
         type="text"
         id="school"
         placeholder="Enter the name of the school/university you attended"

@@ -1,28 +1,15 @@
 export default function GeneralInformation({
-  // generalInfo,
-  // onGeneralInfoChange,
   formData,
   onFormDataChange,
+  onInputChange,
 }) {
-  function handleInputChange(e) {
-    const { name, value } = e.target;
-    const updatedInfo = {
-      ...formData,
-      generalInformation: {
-        ...formData.generalInformation,
-        [name]: value,
-      },
-    };
-    onFormDataChange(updatedInfo);
-  }
-
   return (
     <form className="general-information">
       <h2>General Information</h2>
       <label htmlFor="full-name">Full name</label>
       <input
         value={formData.generalInformation.fullName}
-        onChange={handleInputChange}
+        onChange={(e) => onInputChange(e)}
         type="text"
         id="full-name"
         name="fullName"
@@ -31,7 +18,7 @@ export default function GeneralInformation({
       <label htmlFor="email">Email</label>
       <input
         value={formData.generalInformation.email}
-        onChange={handleInputChange}
+        onChange={(e) => onInputChange(e)}
         type="email"
         id="full-name"
         name="email"
@@ -40,7 +27,7 @@ export default function GeneralInformation({
       <label htmlFor="phone-number">Phone number</label>
       <input
         value={formData.generalInformation.phoneNumber}
-        onChange={handleInputChange}
+        onChange={(e) => onInputChange(e)}
         type="tel"
         id="full-name"
         name="phoneNumber"
@@ -51,9 +38,10 @@ export default function GeneralInformation({
           <label htmlFor="linkedin">LinkedIn</label>
           <input
             value={formData.generalInformation.linkedIn}
-            onChange={handleInputChange}
+            onChange={(e) => onInputChange(e)}
             type="text"
             id="linkedin"
+            name="linkedIn"
             placeholder="LinkedIn profile URL"
           />
         </div>
@@ -61,7 +49,7 @@ export default function GeneralInformation({
           <label htmlFor="github">GitHub</label>
           <input
             value={formData.generalInformation.gitHub}
-            onChange={handleInputChange}
+            onChange={(e) => onInputChange(e)}
             name="gitHub"
             type="text"
             id="end-date"
@@ -69,19 +57,10 @@ export default function GeneralInformation({
           />
         </div>
       </div>
-      <label htmlFor="address">Address</label>
-      <input
-        value={formData.generalInformation.address}
-        onChange={handleInputChange}
-        name="address"
-        type="text"
-        id="address"
-        placeholder="City, Country"
-      />
       <label htmlFor="summary">Summary</label>
       <textarea
         value={formData.generalInformation.summary}
-        onChange={handleInputChange}
+        onChange={(e) => onInputChange(e)}
         name="summary"
         id="summary"
         placeholder="Briefly describe yourself, your aspirations and interests"

@@ -5,7 +5,6 @@ const data = {
     phoneNumber: "0722222222",
     linkedIn: "https://www.linkedin.com/in/%C8%99urubariu-robert/",
     gitHub: "robert-juru",
-    address: "Bucharest, Romania",
     summary:
       "Interested in technology and eager to learn new things every day. Passionate about programming, especially front-end development for web applications.",
   },

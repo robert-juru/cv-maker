@@ -1,35 +1,39 @@
 import data from "./data";
 
 let skills = data.skills;
-export default function SkillsPreview() {
+export default function SkillsPreview({ formData }) {
   return (
     <article className="skills">
       <h2>Skills</h2>
       <hr />
-      <li className="languages">
-        <strong>Languages: </strong>
-        {skills.languages}
-      </li>
-      <li className="programming-languages">
-        <strong>Programming Languages: </strong>
-        {skills.programmingLanguages}
-      </li>
-      {skills.frameworksAndLibraries && (
+      {formData.skills.languages && (
+        <li className="languages">
+          <strong>Languages: </strong>
+          {formData.skills.languages}
+        </li>
+      )}
+      {formData.skills.programmingLanguages && (
+        <li className="programming-languages">
+          <strong>Programming Languages: </strong>
+          {formData.skills.programmingLanguages}
+        </li>
+      )}
+      {formData.skills.frameworksAndLibraries && (
         <li className="frameworks-libraries">
           <strong>Frameworks and libraries: </strong>
-          {skills.frameworksAndLibraries}
+          {formData.skills.frameworksAndLibraries}
         </li>
       )}
-      {skills.tools && (
+      {formData.skills.tools && (
         <li className="frameworks-libraries">
           <strong>Tools: </strong>
-          {skills.tools}
+          {formData.skills.tools}
         </li>
       )}
-       {skills.softSkills && (
+      {formData.skills.softSkills && (
         <li className="frameworks-libraries">
           <strong>Soft skills: </strong>
-          {skills.softSkills}
+          {formData.skills.softSkills}
         </li>
       )}
     </article>

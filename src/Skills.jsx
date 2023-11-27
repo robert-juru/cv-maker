@@ -1,22 +1,45 @@
-export default function Skills() {
+export default function Skills({ formData, onFormDataChange, onInputChange }) {
   return (
     <form className="skills">
       <h2>Skills</h2>
       <label htmlFor="languages">Languages</label>
-      <input id="languages" placeholder="Language (Proficiency Level)" />
+      <input
+        value={formData.skills.languages}
+        onChange={(e) => onInputChange(e)}
+        name="languages"
+        id="languages"
+        placeholder="Language (Proficiency Level)"
+      />
       <label htmlFor="programming-languages">Programming languages</label>
       <input
-        id="languages"
+        value={formData.skills.programmingLanguages}
+        onChange={(e) => onInputChange(e)}
+        name="programmingLanguages"
+        id="programming-languages"
         placeholder="List the programming languages you know"
       />
-      <label htmlFor="languages">Frameworks and libraries</label>
+      <label htmlFor="frameworks-and-libraries">Frameworks and libraries</label>
       <input
-        id="languages"
+        value={formData.skills.frameworksAndLibraries}
+        onChange={(e) => onInputChange(e)}
+        name="frameworksAndLibraries"
+        id="frameworks-and-libraries"
         placeholder="Share frameworks or libraries you're familiar with"
       />
-      <label htmlFor="languages">Tools</label>
+      <label htmlFor="tools">Tools</label>
       <input
-        id="languages"
+        value={formData.skills.tools}
+        onChange={(e) => onInputChange(e)}
+        name="tools"
+        id="tools"
+        placeholder="Enter other relevant tools or technologies"
+      />
+      <label htmlFor="soft-skills">Soft skills</label>
+      <input
+        value={formData.skills.softSkills}
+        onChange={(e) => onInputChange(e)}
+        name="softSkills"
+        id="soft-skills"
         placeholder="Enter other relevant tools or technologies"
       />
     </form>

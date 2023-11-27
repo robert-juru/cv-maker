@@ -4,20 +4,14 @@ import EmploymentPreview from "./EmploymentPreview.jsx";
 import ProjectsPreview from "./ProjectsPreview.jsx";
 import SkillsPreview from "./SkillsPreview.jsx";
 
-export default function CvPreview({
-  //  generalInfo 
-  formData
-  }) {
+export default function CvPreview({ formData }) {
   return (
     <section className="cv-preview">
-      <GeneralInformationPreview
-      //  generalInfo={generalInfo}
-      formData={formData}
-        />
-      <EducationPreview />
+      <GeneralInformationPreview formData={formData} />
+      <EducationPreview formData={formData} />
       <EmploymentPreview />
       <ProjectsPreview />
-      <SkillsPreview />
+      <SkillsPreview formData={formData} />
     </section>
   );
 }
