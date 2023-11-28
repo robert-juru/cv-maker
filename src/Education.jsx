@@ -2,10 +2,10 @@ import { Fragment } from "react";
 
 export default function Education({ formData, onInputChange }) {
   return (
-    <Fragment>
+    <form className="education">
       {formData.education.map((institution, index) => (
-        <form key={index} className="education">
-          <h2>Education</h2>
+        <div key={institution+index} className="education">
+          <h2>Education {index+1}</h2>
           <label htmlFor="school">School</label>
           <input
             value={formData.education[index].school}
@@ -66,8 +66,8 @@ export default function Education({ formData, onInputChange }) {
             id="location"
             placeholder="City, Country"
           />
-        </form>
+        </div>
       ))}
-    </Fragment>
+    </form>
   );
 }

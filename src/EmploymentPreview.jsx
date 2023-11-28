@@ -4,8 +4,7 @@ import { Fragment } from "react";
 let employment = data.employment;
 let jobIdCounter = 0;
 
-function renderEmployment() {
-  return employment.map((job) => {
+function renderEmployment(job) {
     jobIdCounter++;
     return (
       <div key={job.companyName + jobIdCounter} className="employment-info">
@@ -28,15 +27,19 @@ function renderEmployment() {
         </div>
       </div>
     );
-  });
+  // });
 }
 
-export default function EmploymentPreview() {
+export default function EmploymentPreview({ formData }) {
   return (
     <article className="job-experience-container">
       <h2>Employment</h2>
       <hr />
-      {renderEmployment()}
+      {formData.employment.map((job, index) => (
+       <div key={job.jobName + index}>
+       {renderEmployment(job)}
+     </div>
+      ))}
     </article>
   );
 }

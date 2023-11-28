@@ -5,37 +5,54 @@ import Projects from "./Projects.jsx";
 import Skills from "./Skills.jsx";
 
 export default function CvMaker({ formData, onFormDataChange }) {
-  function handleInputChange(section, index, e) {
+  function handleMultiInputChange(section, index, e) {
+    //used for handling sections with more than one instance like Education
     const { name, value } = e.target;
+    const currentIndex = typeof index !== "undefined" ? index : 0;
     const updatedInfo = {
       ...formData,
       [section]: formData[section].map((item, i) =>
-        i === index ? { ...item, [name]: value } : item
+        i === currentIndex ? { ...item, [name]: value } : item
       ),
     };
     onFormDataChange(updatedInfo);
   }
+
+  function handleSingleInputChange(section, e) {
+    //used for handling sections with only one instance like General Information
+    const { name, value } = e.target;
+    const updatedInfo = {
+      ...formData,
+      [section]: { ...formData[section], [name]: value },
+    };
+    onFormDataChange(updatedInfo);
+  }
+
   return (
     <main className="cv-maker-container">
       <GeneralInformation
         formData={formData}
-        onInputChange={(e) => handleInputChange("generalInformation", e)}
+        onInputChange={(e) => handleSingleInputChange("generalInformation", e)}
       />
       <Education
         formData={formData}
-        onInputChange={(index, e) => handleInputChange("education", index, e)}
+        onInputChange={(index, e) =>
+          handleMultiInputChange("education", index, e)
+        }
       />
       <Employment
         formData={formData}
-        onInputChange={(e) => handleInputChange("employment", e)}
+        onInputChange={(index, e) =>
+          handleMultiInputChange("employment", index, e)
+        }
       />
       <Projects
         formData={formData}
-        onInputChange={(e) => handleInputChange("projects", e)}
+        onInputChange={(e) => handleMultiInputChange("projects", e)}
       />
       <Skills
         formData={formData}
-        onInputChange={(e) => handleInputChange("skills", e)}
+        onInputChange={(e) => handleSingleInputChange("skills", e)}
       />
     </main>
   );

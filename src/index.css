@@ -175,3 +175,9 @@ a .underlined {
 .contact-icon {
   margin-right: 4px;
 }
+
+.education,
+.employment {
+  display:flex;
+  flex-direction: column;
+}

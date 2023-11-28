@@ -1,8 +1,4 @@
-export default function GeneralInformation({
-  formData,
-  onFormDataChange,
-  onInputChange,
-}) {
+export default function GeneralInformation({ formData, onInputChange }) {
   return (
     <form className="general-information">
       <h2>General Information</h2>
@@ -64,7 +60,6 @@ export default function GeneralInformation({
         name="summary"
         id="summary"
         placeholder="Briefly describe yourself, your aspirations and interests"
-        defaultValue={""}
       />
     </form>
   );

@@ -9,7 +9,7 @@ export default function CvPreview({ formData }) {
     <section className="cv-preview">
       <GeneralInformationPreview formData={formData} />
       <EducationPreview formData={formData} />
-      <EmploymentPreview />
+      <EmploymentPreview formData={formData} />
       <ProjectsPreview />
       <SkillsPreview formData={formData} />
     </section>
