@@ -48,7 +48,9 @@ export default function CvMaker({ formData, onFormDataChange }) {
       />
       <Projects
         formData={formData}
-        onInputChange={(e) => handleMultiInputChange("projects", e)}
+        onInputChange={(index, e) =>
+          handleMultiInputChange("projects", index, e)
+        }
       />
       <Skills
         formData={formData}

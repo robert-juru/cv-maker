@@ -177,7 +177,8 @@ a .underlined {
 }
 
 .education,
-.employment {
+.employment,
+.projects {
   display:flex;
   flex-direction: column;
 }
