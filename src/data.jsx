@@ -33,29 +33,23 @@ const data = {
       companyLocation: "Bucharest, Romania",
       startDate: "July, 2021",
       endDate: "Present",
-      jobDescription: [
-        "Collaborated with cross-functional teams to develop and implement user-facing features using modern web technologies.",
-        "Designed and maintained responsive web applications, ensuring seamless user experiences across various devices.",
-        "Contributed to the development and enhancement of the front-end architecture to improve performance and scalability.",
-      ],
+      jobDescription: `Collaborated with cross-functional teams to develop and implement user-facing features using modern web technologies.
+      Designed and maintained responsive web applications, ensuring seamless user experiences across various devices.
+      Contributed to the development and enhancement of the front-end architecture to improve performance and scalability.`,
     },
   ],
   projects: [
     {
       projectName: "E-commerce Website Redesign",
       projectLink: "https://github.com/username/project-name",
-      projectDescription: [
-        "Revamped the UI/UX of an existing e-commerce platform, enhancing user engagement and increasing conversion rates.",
-        "Utilized React.js and Redux for state management to create a dynamic and interactive shopping experience.",
-      ],
+      projectDescription: `Revamped the UI/UX of an existing e-commerce platform, enhancing user engagement and increasing conversion rates.
+      Utilized React.js and Redux for state management to create a dynamic and interactive shopping experience.`,
     },
     {
       projectName: "Weather Dashboard with Chart Visualization",
       projectLink: "https://github.com/username/project-name",
-      projectDescription: [
-        "Created a weather dashboard using Vue.js and Chart.js to visualize historical weather data.",
-        "Fetched and displayed weather trends and forecasts for multiple locations using asynchronous API calls.",
-      ],
+      projectDescription: `Created a weather dashboard using Vue.js and Chart.js to visualize historical weather data. 
+      Fetched and displayed weather trends and forecasts for multiple locations using asynchronous API calls.`,
     },
   ],
   skills: {

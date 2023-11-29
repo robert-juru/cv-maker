@@ -58,7 +58,10 @@ export default function Employment({ formData, onInputChange }) {
           <label htmlFor="description"> Job Description</label>
           <textarea
             rows={3}
-            value={formData.employment[index].jobDescription}
+            value={formData.employment[index].jobDescription
+              .split('\n')
+              .map((line, i) => (i === 0 ? line.trim() : line.trimStart()))
+              .join('\n')}
             onChange={(e) => onInputChange(index, e)}
             name="jobDescription"
             id="job-description"

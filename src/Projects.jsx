@@ -27,11 +27,15 @@ export default function Projects({ formData, onInputChange }) {
           <label htmlFor="project-description">Project Description</label>
           <textarea
             rows={3}
-            value={formData.projects[index].projectDescription}
+            value={formData.projects[index].projectDescription
+              .split('\n')
+              .map((line, i) => (i === 0 ? line.trim() : line.trimStart()))
+              .join('\n')
+            }
             onChange={(e) => onInputChange(index, e)}
             name="projectDescription"
             id="description"
-            placeholder="Describe the project's purpose, technologies used and notable features"
+            placeholder="Describe project details and use Enter to create new bullet points"
           />
         </div>
       ))}

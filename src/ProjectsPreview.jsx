@@ -10,13 +10,13 @@ function renderProjects(project) {
         <em>{project.projectLink}</em>
       </a>
       <ul className="project-details">
-        {project.projectDescription.map((projectDetail) => (
-          <Fragment
-            key={project.projectName + projectIdCounter + projectDetail}
-          >
-            <li>{projectDetail}</li>
-          </Fragment>
-        ))}
+        {project.projectDescription &&
+          project.projectDescription
+            .trim() // Remove leading/trailing whitespace
+            .split("\n") // Split the string by newline characters
+            .map((detail, detailIndex) => (
+              <li key={detailIndex}>{detail.trim()}</li>
+            ))}
       </ul>
     </div>
   );
