@@ -3,7 +3,6 @@ import Education from "./Education.jsx";
 import Employment from "./Employment.jsx";
 import Projects from "./Projects.jsx";
 import Skills from "./Skills.jsx";
-import SectionHeader from "./SectionHeader.jsx";
 import { useState } from "react";
 
 export default function CvMaker({ formData, onFormDataChange }) {
@@ -12,11 +11,10 @@ export default function CvMaker({ formData, onFormDataChange }) {
   function handleMultiInputChange(section, index, e) {
     //used for handling sections with more than one instance like Education
     const { name, value } = e.target;
-    const currentIndex = typeof index !== "undefined" ? index : 0;
     const updatedInfo = {
       ...formData,
       [section]: formData[section].map((item, i) =>
-        i === currentIndex ? { ...item, [name]: value } : item
+        i === index ? { ...item, [name]: value } : item
       ),
     };
     onFormDataChange(updatedInfo);
