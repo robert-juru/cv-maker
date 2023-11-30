@@ -68,8 +68,8 @@ main > form {
   border-radius: 0.5rem;
 }
 
-form > h2 {
-  margin-bottom: 16px;
+form > :nth-child(2) > :first-child {
+  margin-top: 16px;
 }
 
 label,
@@ -136,7 +136,7 @@ a,
 a:link,
 a:visited {
   text-decoration: none;
-  color:inherit;
+  color: inherit;
 }
 
 a .underlined {
@@ -179,6 +179,11 @@ a .underlined {
 .education,
 .employment,
 .projects {
-  display:flex;
+  display: flex;
   flex-direction: column;
+}
+
+.section-header {
+  display:flex;
+  justify-content: space-between;
 }
