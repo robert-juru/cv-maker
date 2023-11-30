@@ -3,13 +3,9 @@ export default function SectionHeader({ isActive, onHide, onShow, title }) {
     <div className="section-header">
       <h2>{title}</h2>
       {isActive ? (
-        <button type="button" onClick={onHide}>
-          Hide
-        </button>
+        <img className="hide-btn" src="src\assets\expand_less.svg" onClick={onHide}></img>
       ) : (
-        <button type="button" onClick={onShow}>
-          Show
-        </button>
+        <img className="show-btn"src="src\assets\expand_more.svg" onClick={onShow}></img>
       )}
     </div>
   );

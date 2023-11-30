@@ -184,6 +184,11 @@ a .underlined {
 }
 
 .section-header {
-  display:flex;
+  display: flex;
   justify-content: space-between;
+}
+
+.hide-btn,
+.show-btn {
+  cursor: pointer;
 }
