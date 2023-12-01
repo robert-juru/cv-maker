@@ -30,6 +30,25 @@ export default function CvMaker({ formData, onFormDataChange }) {
     onFormDataChange(updatedInfo);
   }
 
+  function handleAddEntry(section, newEntry) {
+    const updatedData = {
+      ...formData,
+      [section]: [...formData[section], newEntry],
+    };
+    onFormDataChange(updatedData);
+    console.log(updatedData);
+  }
+
+  const newJob = {
+    companyName: "New Job",
+  };
+  const newProject = {
+    projectName: "New Project",
+  };
+  const newInstitute = {
+    school: "New Institute",
+  };
+
   return (
     <main className="cv-maker-container">
       <GeneralInformation
@@ -44,6 +63,7 @@ export default function CvMaker({ formData, onFormDataChange }) {
         onInputChange={(index, e) =>
           handleMultiInputChange("education", index, e)
         }
+        onChange={() => handleAddEntry("education", newInstitute)}
         isActive={activeIndex === 1}
         onShow={() => setActiveIndex(1)}
         onHide={() => setActiveIndex(null)}
@@ -53,6 +73,7 @@ export default function CvMaker({ formData, onFormDataChange }) {
         onInputChange={(index, e) =>
           handleMultiInputChange("employment", index, e)
         }
+        onChange={() => handleAddEntry("employment", newJob)}
         isActive={activeIndex === 2}
         onShow={() => setActiveIndex(2)}
         onHide={() => setActiveIndex(null)}
@@ -62,6 +83,7 @@ export default function CvMaker({ formData, onFormDataChange }) {
         onInputChange={(index, e) =>
           handleMultiInputChange("projects", index, e)
         }
+        onChange={() => handleAddEntry("projects", newProject)}
         isActive={activeIndex === 3}
         onShow={() => setActiveIndex(3)}
         onHide={() => setActiveIndex(null)}

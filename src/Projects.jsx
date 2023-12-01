@@ -7,6 +7,7 @@ export default function Projects({
   isActive,
   onShow,
   onHide,
+  onChange,
 }) {
   const [activeIndex, setActiveIndex] = useState(null);
 
@@ -35,9 +36,9 @@ export default function Projects({
         <label htmlFor="project-description">Project Description</label>
         <textarea
           rows={3}
-          value={formData.projects[index].projectDescription
+          value={formData.projects[index].projectDescription && formData.projects[index].projectDescription
             .split("\n")
-            .map((line, i) => (i === 0 ? line.trim() : line.trimStart()))
+            .map((line, i) => (line.trimStart()))
             .join("\n")}
           onChange={(e) => onInputChange(index, e)}
           name="projectDescription"
@@ -55,8 +56,9 @@ export default function Projects({
         onHide={onHide}
         onShow={onShow}
       />
-      {isActive
-        ? formData.projects.map((project, index) => (
+      {isActive ? (
+        <>
+          {formData.projects.map((project, index) => (
             <Fragment key={project + index}>
               <h3
                 onClick={() =>
@@ -67,8 +69,12 @@ export default function Projects({
               </h3>
               {activeIndex === index && renderProject(index)}
             </Fragment>
-          ))
-        : null}
+          ))}
+          <button type="button" onClick={onChange}>
+            +Project
+          </button>
+        </>
+      ) : null}
     </form>
   );
 }

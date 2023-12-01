@@ -7,9 +7,17 @@ export default function Education({
   isActive,
   onShow,
   onHide,
+  onChange
 }) {
   const [activeIndex, setActiveIndex] = useState(null);
 
+  // function addNewEntry(section,index) {
+  //   return (
+  //     <button onClick={() => renderEducation(formData.education.length)}>
+  //       +Education
+  //     </button>
+  //   );
+  // }
   function renderEducation(index) {
     const institution = formData.education[index];
     return (
@@ -85,8 +93,9 @@ export default function Education({
         onHide={onHide}
         onShow={onShow}
       />
-      {isActive
-        ? formData.education.map((institution, index) => (
+      {isActive ? (
+        <>
+          {formData.education.map((institution, index) => (
             <Fragment key={institution + index}>
               <h3
                 onClick={() =>
@@ -97,8 +106,13 @@ export default function Education({
               </h3>
               {activeIndex === index && renderEducation(index)}
             </Fragment>
-          ))
-        : null}
+          ))}
+          {/* {formData.education.map((institution, index) => renderEducation(index))} */}
+          <button type="button" onClick={onChange}>
+            +Education
+          </button>
+        </>
+      ) : null}
     </form>
   );
 }

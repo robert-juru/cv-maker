@@ -6,12 +6,13 @@ export default function Employment({
   isActive,
   onShow,
   onHide,
+  onChange,
 }) {
   const [activeIndex, setActiveIndex] = useState(null);
-  function renderJob() {
+  function renderJob(index) {
+    const job = formData.employment[index];
     return (
       <div key={job + index} className="employment">
-        <h3>Job {index + 1}</h3>
         <label htmlFor="job-title">Job Title</label>
         <input
           value={formData.employment[index].jobTitle}
@@ -66,7 +67,7 @@ export default function Employment({
         <label htmlFor="description"> Job Description</label>
         <textarea
           rows={3}
-          value={formData.employment[index].jobDescription
+          value={formData.employment[index].jobDescription && formData.employment[index].jobDescription 
             .split("\n")
             .map((line, i) => (i === 0 ? line.trim() : line.trimStart()))
             .join("\n")}
@@ -86,20 +87,23 @@ export default function Employment({
         onHide={onHide}
         onShow={onShow}
       />
-      {isActive
-        ? formData.employment.map((job, index) => (
+      {isActive ? (
+        <>
+          {formData.employment.map((job, index) => (
             <Fragment key={job + index}>
               <h3
                 onClick={() =>
                   setActiveIndex(activeIndex === index ? null : index)
                 }
               >
-                {job.jobTitle}
+                {job.companyName}
               </h3>
               {activeIndex === index && renderJob(index)}
             </Fragment>
-          ))
-        : null}
+          ))}
+          <button type="button" onClick={onChange}>+Employment</button>
+        </>
+      ) : null}
     </form>
   );
 }
