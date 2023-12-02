@@ -36,17 +36,28 @@ export default function CvMaker({ formData, onFormDataChange }) {
       [section]: [...formData[section], newEntry],
     };
     onFormDataChange(updatedData);
-    console.log(updatedData);
+  }
+
+  function handleDeleteEntry(itemId) {
+    const updatedData = {
+      ...formData,
+      projects: formData.projects.filter((project) => itemId !== project.id),
+    };
+    onFormDataChange(updatedData);
   }
 
   const newJob = {
     companyName: "New Job",
+    id: formData.employment.length,
   };
+  let projectIdCounter = formData.projects.length;
   const newProject = {
     projectName: "New Project",
+    id: `${projectIdCounter++}`,
   };
   const newInstitute = {
     school: "New Institute",
+    id: formData.education.length,
   };
 
   return (
@@ -63,7 +74,7 @@ export default function CvMaker({ formData, onFormDataChange }) {
         onInputChange={(index, e) =>
           handleMultiInputChange("education", index, e)
         }
-        onChange={() => handleAddEntry("education", newInstitute)}
+        onAddEntry={() => handleAddEntry("education", newInstitute)}
         isActive={activeIndex === 1}
         onShow={() => setActiveIndex(1)}
         onHide={() => setActiveIndex(null)}
@@ -73,7 +84,7 @@ export default function CvMaker({ formData, onFormDataChange }) {
         onInputChange={(index, e) =>
           handleMultiInputChange("employment", index, e)
         }
-        onChange={() => handleAddEntry("employment", newJob)}
+        onAddEntry={() => handleAddEntry("employment", newJob)}
         isActive={activeIndex === 2}
         onShow={() => setActiveIndex(2)}
         onHide={() => setActiveIndex(null)}
@@ -83,7 +94,8 @@ export default function CvMaker({ formData, onFormDataChange }) {
         onInputChange={(index, e) =>
           handleMultiInputChange("projects", index, e)
         }
-        onChange={() => handleAddEntry("projects", newProject)}
+        onAddEntry={() => handleAddEntry("projects", newProject)}
+        onDeleteEntry={handleDeleteEntry}
         isActive={activeIndex === 3}
         onShow={() => setActiveIndex(3)}
         onHide={() => setActiveIndex(null)}

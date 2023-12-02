@@ -7,9 +7,10 @@ export default function Projects({
   isActive,
   onShow,
   onHide,
-  onChange,
+  onAddEntry,
+  onDeleteEntry, onFormDataChange,
 }) {
-  const [activeIndex, setActiveIndex] = useState(null);
+  const [currentItemIndex, setCurrentItemIndex] = useState(null);
 
   function renderProject(index) {
     const project = formData.projects[index];
@@ -36,10 +37,13 @@ export default function Projects({
         <label htmlFor="project-description">Project Description</label>
         <textarea
           rows={3}
-          value={formData.projects[index].projectDescription && formData.projects[index].projectDescription
-            .split("\n")
-            .map((line, i) => (line.trimStart()))
-            .join("\n")}
+          value={
+            formData.projects[index].projectDescription &&
+            formData.projects[index].projectDescription
+              .split("\n")
+              .map((line, i) => line.trimStart())
+              .join("\n")
+          }
           onChange={(e) => onInputChange(index, e)}
           name="projectDescription"
           id="description"
@@ -48,6 +52,15 @@ export default function Projects({
       </div>
     );
   }
+ 
+  if (!isActive && currentItemIndex !== null) {
+    setCurrentItemIndex(null);
+  }
+
+  const handleDeleteAndClose = (projectId) => {
+    onDeleteEntry(projectId);
+    setCurrentItemIndex(null);
+  };
   return (
     <form className="projects">
       <SectionHeader
@@ -62,17 +75,31 @@ export default function Projects({
             <Fragment key={project + index}>
               <h3
                 onClick={() =>
-                  setActiveIndex(activeIndex === index ? null : index)
+                  setCurrentItemIndex(currentItemIndex === index ? null : index)
                 }
               >
-                {project.projectName}
+                {currentItemIndex == null && project.projectName}
               </h3>
-              {activeIndex === index && renderProject(index)}
+              {currentItemIndex === index && (
+                <>
+                  {renderProject(index)}
+                  <div className="btn-container">
+                    <button type="button" onClick={() => setCurrentItemIndex(null)}>
+                      Close
+                    </button>
+                    <button type="button" onClick={() =>handleDeleteAndClose(project.id)}>
+                      Delete
+                    </button>
+                  </div>
+                </>
+              )}
             </Fragment>
           ))}
-          <button type="button" onClick={onChange}>
-            +Project
-          </button>
+          {currentItemIndex == null && (
+            <button type="button" onClick={onAddEntry}>
+              +Project
+            </button>
+          )}
         </>
       ) : null}
     </form>

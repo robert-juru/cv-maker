@@ -7,7 +7,7 @@ export default function Education({
   isActive,
   onShow,
   onHide,
-  onChange
+  onAddEntry
 }) {
   const [activeIndex, setActiveIndex] = useState(null);
 
@@ -108,7 +108,7 @@ export default function Education({
             </Fragment>
           ))}
           {/* {formData.education.map((institution, index) => renderEducation(index))} */}
-          <button type="button" onClick={onChange}>
+          <button type="button" onClick={onAddEntry}>
             +Education
           </button>
         </>

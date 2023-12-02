@@ -6,7 +6,7 @@ export default function Employment({
   isActive,
   onShow,
   onHide,
-  onChange,
+  onAddEntry,
 }) {
   const [activeIndex, setActiveIndex] = useState(null);
   function renderJob(index) {
@@ -101,7 +101,7 @@ export default function Employment({
               {activeIndex === index && renderJob(index)}
             </Fragment>
           ))}
-          <button type="button" onClick={onChange}>+Employment</button>
+          <button type="button" onClick={onAddEntry}>+Employment</button>
         </>
       ) : null}
     </form>
