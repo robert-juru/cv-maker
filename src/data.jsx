@@ -1,3 +1,5 @@
+import { v4 as uuidv4 } from 'uuid';
+
 const data = {
   generalInformation: {
     fullName: "ROBERT SURUBARIU",
@@ -10,7 +12,7 @@ const data = {
   },
   education: [
     {
-      id: 0,
+      id: uuidv4(),
       school: "Academia de Studii Economice",
       degree: "Bachelor's Degree in Computer Science",
       relevantCoursework:
@@ -20,7 +22,7 @@ const data = {
       location: "Bucharest, Romania",
     },
     {
-      id: 1,
+      id: uuidv4(),
       school: `Colegiul National "Vasile Alecsandri"`,
       degree: "High School Diploma (9.73 GPA)",
       startDate: "Sep, 2016",
@@ -30,7 +32,7 @@ const data = {
   ],
   employment: [
     {
-      id:0,
+      id:uuidv4(),
       jobTitle: "Junior Frontend Developer",
       companyName: "StellarTech Solutions",
       companyLocation: "Bucharest, Romania",
@@ -43,14 +45,14 @@ const data = {
   ],
   projects: [
     {
-      id:0,
+      id:uuidv4(),
       projectName: "E-commerce Website Redesign",
       projectLink: "https://github.com/username/project-name",
       projectDescription: `Revamped the UI/UX of an existing e-commerce platform, enhancing user engagement and increasing conversion rates.
       Utilized React.js and Redux for state management to create a dynamic and interactive shopping experience.`,
     },
     {
-      id:1,
+      id:uuidv4(),
       projectName: "Weather Dashboard with Chart Visualization",
       projectLink: "https://github.com/username/project-name",
       projectDescription: `Created a weather dashboard using Vue.js and Chart.js to visualize historical weather data. 

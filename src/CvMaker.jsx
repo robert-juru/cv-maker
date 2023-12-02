@@ -4,6 +4,7 @@ import Employment from "./Employment.jsx";
 import Projects from "./Projects.jsx";
 import Skills from "./Skills.jsx";
 import { useState } from "react";
+import { v4 as uuidv4 } from 'uuid';
 
 export default function CvMaker({ formData, onFormDataChange }) {
   const [activeIndex, setActiveIndex] = useState(0);
@@ -44,26 +45,21 @@ export default function CvMaker({ formData, onFormDataChange }) {
       [section]: formData[section].filter((item) => itemId !== item.id),
     };
     onFormDataChange(updatedData);
+    console.log(updatedData);
   }
 
-  let sectionIdCounter = {
-    project: formData.projects.length,
-    job: formData.employment.length,
-    institute: formData.education.length,
-  };
-
   const newJob = {
-    companyName: `New Job(${sectionIdCounter.job++})`,
-    id: `${sectionIdCounter.job++}`,
+    companyName: `New Job`,
+    id: uuidv4(),
   };
 
   const newProject = {
-    projectName: `New Project(${sectionIdCounter.project++})`,
-    id: `${sectionIdCounter.project++}`,
+    projectName: `New Project`,
+    id: uuidv4(),
   };
   const newInstitute = {
-    school: `New Institute(${sectionIdCounter.institute++})`,
-    id: `${sectionIdCounter.institute++}`,
+    school: `New Institute`,
+    id: uuidv4(),
   };
 
   return (
