@@ -7,8 +7,9 @@ export default function Employment({
   onShow,
   onHide,
   onAddEntry,
+  onDeleteEntry,
 }) {
-  const [activeIndex, setActiveIndex] = useState(null);
+  const [currentItemIndex, setCurrentItemIndex] = useState(null);
   function renderJob(index) {
     const job = formData.employment[index];
     return (
@@ -67,10 +68,13 @@ export default function Employment({
         <label htmlFor="description"> Job Description</label>
         <textarea
           rows={3}
-          value={formData.employment[index].jobDescription && formData.employment[index].jobDescription 
-            .split("\n")
-            .map((line, i) => (i === 0 ? line.trim() : line.trimStart()))
-            .join("\n")}
+          value={
+            formData.employment[index].jobDescription &&
+            formData.employment[index].jobDescription
+              .split("\n")
+              .map((line, i) => (i === 0 ? line.trim() : line.trimStart()))
+              .join("\n")
+          }
           onChange={(e) => onInputChange(index, e)}
           name="jobDescription"
           id="job-description"
@@ -79,6 +83,16 @@ export default function Employment({
       </div>
     );
   }
+
+  {
+    !isActive && currentItemIndex !== null ? setCurrentItemIndex(null) : null;
+  }
+
+  function handleDeleteAndClose(itemId) {
+    onDeleteEntry("employment", itemId);
+    setCurrentItemIndex(null);
+  }
+
   return (
     <form className="employment">
       <SectionHeader
@@ -93,15 +107,37 @@ export default function Employment({
             <Fragment key={job + index}>
               <h3
                 onClick={() =>
-                  setActiveIndex(activeIndex === index ? null : index)
+                  setCurrentItemIndex(currentItemIndex === index ? null : index)
                 }
               >
-                {job.companyName}
+                {currentItemIndex == null && job.companyName}
               </h3>
-              {activeIndex === index && renderJob(index)}
+              {currentItemIndex === index && (
+                <>
+                  {renderJob(index)}
+                  <div className="btn-container">
+                    <button
+                      type="button"
+                      onClick={() => setCurrentItemIndex(null)}
+                    >
+                      Close
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => handleDeleteAndClose(job.id)}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </>
+              )}
             </Fragment>
           ))}
-          <button type="button" onClick={onAddEntry}>+Employment</button>
+          {currentItemIndex == null && (
+            <button type="button" onClick={onAddEntry}>
+              +Project
+            </button>
+          )}
         </>
       ) : null}
     </form>

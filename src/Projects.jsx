@@ -8,7 +8,8 @@ export default function Projects({
   onShow,
   onHide,
   onAddEntry,
-  onDeleteEntry, onFormDataChange,
+  onDeleteEntry,
+  onFormDataChange,
 }) {
   const [currentItemIndex, setCurrentItemIndex] = useState(null);
 
@@ -52,15 +53,16 @@ export default function Projects({
       </div>
     );
   }
- 
-  if (!isActive && currentItemIndex !== null) {
+
+  {
+    !isActive && currentItemIndex !== null ? setCurrentItemIndex(null) : null;
+  }
+
+  function handleDeleteAndClose(itemId) {
+    onDeleteEntry("projects", itemId);
     setCurrentItemIndex(null);
   }
 
-  const handleDeleteAndClose = (projectId) => {
-    onDeleteEntry(projectId);
-    setCurrentItemIndex(null);
-  };
   return (
     <form className="projects">
       <SectionHeader
@@ -84,10 +86,16 @@ export default function Projects({
                 <>
                   {renderProject(index)}
                   <div className="btn-container">
-                    <button type="button" onClick={() => setCurrentItemIndex(null)}>
+                    <button
+                      type="button"
+                      onClick={() => setCurrentItemIndex(null)}
+                    >
                       Close
                     </button>
-                    <button type="button" onClick={() =>handleDeleteAndClose(project.id)}>
+                    <button
+                      type="button"
+                      onClick={() => handleDeleteAndClose(project.id)}
+                    >
                       Delete
                     </button>
                   </div>

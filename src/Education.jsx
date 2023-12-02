@@ -7,17 +7,11 @@ export default function Education({
   isActive,
   onShow,
   onHide,
-  onAddEntry
+  onAddEntry,
+  onDeleteEntry,
 }) {
-  const [activeIndex, setActiveIndex] = useState(null);
+  const [currentItemIndex, setCurrentItemIndex] = useState(null);
 
-  // function addNewEntry(section,index) {
-  //   return (
-  //     <button onClick={() => renderEducation(formData.education.length)}>
-  //       +Education
-  //     </button>
-  //   );
-  // }
   function renderEducation(index) {
     const institution = formData.education[index];
     return (
@@ -85,6 +79,15 @@ export default function Education({
       </div>
     );
   }
+
+  {
+    !isActive && currentItemIndex !== null ? setCurrentItemIndex(null) : null;
+  }
+
+  function handleDeleteAndClose(itemId) {
+    onDeleteEntry("education", itemId);
+    setCurrentItemIndex(null);
+  }
   return (
     <form className="education">
       <SectionHeader
@@ -99,18 +102,37 @@ export default function Education({
             <Fragment key={institution + index}>
               <h3
                 onClick={() =>
-                  setActiveIndex(activeIndex === index ? null : index)
+                  setCurrentItemIndex(currentItemIndex === index ? null : index)
                 }
               >
-                {institution.school}
+                {currentItemIndex == null && institution.school}
               </h3>
-              {activeIndex === index && renderEducation(index)}
+              {currentItemIndex === index && (
+                <>
+                  {renderEducation(index)}
+                  <div className="btn-container">
+                    <button
+                      type="button"
+                      onClick={() => setCurrentItemIndex(null)}
+                    >
+                      Close
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => handleDeleteAndClose(institution.id)}
+                    >
+                      Delete
+                    </button>
+                  </div>
+                </>
+              )}
             </Fragment>
           ))}
-          {/* {formData.education.map((institution, index) => renderEducation(index))} */}
-          <button type="button" onClick={onAddEntry}>
-            +Education
-          </button>
+          {currentItemIndex == null && (
+            <button type="button" onClick={onAddEntry}>
+              +Institution
+            </button>
+          )}
         </>
       ) : null}
     </form>

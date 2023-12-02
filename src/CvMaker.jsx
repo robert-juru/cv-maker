@@ -38,26 +38,32 @@ export default function CvMaker({ formData, onFormDataChange }) {
     onFormDataChange(updatedData);
   }
 
-  function handleDeleteEntry(itemId) {
+  function handleDeleteEntry(section, itemId) {
     const updatedData = {
       ...formData,
-      projects: formData.projects.filter((project) => itemId !== project.id),
+      [section]: formData[section].filter((item) => itemId !== item.id),
     };
     onFormDataChange(updatedData);
   }
 
-  const newJob = {
-    companyName: "New Job",
-    id: formData.employment.length,
+  let sectionIdCounter = {
+    project: formData.projects.length,
+    job: formData.employment.length,
+    institute: formData.education.length,
   };
-  let projectIdCounter = formData.projects.length;
+
+  const newJob = {
+    companyName: `New Job(${sectionIdCounter.job++})`,
+    id: `${sectionIdCounter.job++}`,
+  };
+
   const newProject = {
-    projectName: "New Project",
-    id: `${projectIdCounter++}`,
+    projectName: `New Project(${sectionIdCounter.project++})`,
+    id: `${sectionIdCounter.project++}`,
   };
   const newInstitute = {
-    school: "New Institute",
-    id: formData.education.length,
+    school: `New Institute(${sectionIdCounter.institute++})`,
+    id: `${sectionIdCounter.institute++}`,
   };
 
   return (
@@ -75,6 +81,7 @@ export default function CvMaker({ formData, onFormDataChange }) {
           handleMultiInputChange("education", index, e)
         }
         onAddEntry={() => handleAddEntry("education", newInstitute)}
+        onDeleteEntry={handleDeleteEntry}
         isActive={activeIndex === 1}
         onShow={() => setActiveIndex(1)}
         onHide={() => setActiveIndex(null)}
@@ -85,6 +92,7 @@ export default function CvMaker({ formData, onFormDataChange }) {
           handleMultiInputChange("employment", index, e)
         }
         onAddEntry={() => handleAddEntry("employment", newJob)}
+        onDeleteEntry={handleDeleteEntry}
         isActive={activeIndex === 2}
         onShow={() => setActiveIndex(2)}
         onHide={() => setActiveIndex(null)}
