@@ -6,8 +6,6 @@ export default function Education({
   isActive,
   onShow,
   onHide,
-  currentItemIndex,
-  setCurrentItemIndex,
   renderSection,
 }) {
   function renderEducation(index) {
@@ -77,11 +75,6 @@ export default function Education({
       </div>
     );
   }
-
-  // {
-  //   !isActive && currentItemIndex !== null ? setCurrentItemIndex(null) : null;
-  // }
-
   return (
     <form className="education">
       <SectionHeader

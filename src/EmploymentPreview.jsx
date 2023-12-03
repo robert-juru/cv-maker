@@ -31,8 +31,13 @@ function renderEmployment(job) {
 export default function EmploymentPreview({ formData }) {
   return (
     <article className="job-experience-container">
-      <h2>Employment</h2>
-      <hr />
+      {formData.employment.length > 1 && (
+        <>
+          <h2>Employment</h2>
+          <hr />
+        </>
+      )}
+
       {formData.employment.map((job, index) => (
         <div key={job.jobName + index}>{renderEmployment(job)}</div>
       ))}

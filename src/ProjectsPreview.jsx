@@ -25,8 +25,13 @@ function renderProjects(project) {
 export default function ProjectsPreview({ formData }) {
   return (
     <article className="projects">
-      <h2>Projects</h2>
-      <hr />
+      {formData.projects.length > 1 && (
+        <>
+          <h2>Projects</h2>
+          <hr />
+        </>
+      )}
+
       {formData.projects.map((project, index) => (
         <div key={project.projectName + index}>{renderProjects(project)}</div>
       ))}

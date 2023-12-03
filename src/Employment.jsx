@@ -6,23 +6,12 @@ export default function Employment({
   isActive,
   onShow,
   onHide,
-  currentItemIndex,
-  setCurrentItemIndex,
   renderSection,
 }) {
   function renderJob(index) {
     const job = formData.employment[index];
     return (
       <div key={job + index} className="employment">
-        <label htmlFor="job-title">Job Title</label>
-        <input
-          value={formData.employment[index].jobTitle}
-          onChange={(e) => onInputChange(index, e)}
-          name="jobTitle"
-          type="text"
-          id="job-title"
-          placeholder="Enter job title"
-        />
         <label htmlFor="company-name">Company Name</label>
         <input
           value={formData.employment[index].companyName}
@@ -31,6 +20,15 @@ export default function Employment({
           type="text"
           id="company-name"
           placeholder="Enter company name"
+        />
+        <label htmlFor="job-title">Job Title</label>
+        <input
+          value={formData.employment[index].jobTitle}
+          onChange={(e) => onInputChange(index, e)}
+          name="jobTitle"
+          type="text"
+          id="job-title"
+          placeholder="Enter job title"
         />
         <label htmlFor="company-location">Company Location</label>
         <input
@@ -83,11 +81,6 @@ export default function Employment({
       </div>
     );
   }
-
-  // {
-  //   !isActive && currentItemIndex !== null ? setCurrentItemIndex(null) : null;
-  // }
-
   return (
     <form className="employment">
       <SectionHeader

@@ -6,11 +6,8 @@ export default function Projects({
   isActive,
   onShow,
   onHide,
-  currentItemIndex,
-  setCurrentItemIndex,
   renderSection,
 }) {
-
   function renderProject(index) {
     const project = formData.projects[index];
     return (
@@ -51,12 +48,6 @@ export default function Projects({
       </div>
     );
   }
-
-  // {
-  //   !isActive && currentItemIndex !== null ? setCurrentItemIndex(null) : null;
-  // }
-
-
   return (
     <form className="projects">
       <SectionHeader

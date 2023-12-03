@@ -37,8 +37,12 @@ function renderEducation(institution) {
 export default function EducationPreview({ formData }) {
   return (
     <article className="education-container">
-      <h2>Education</h2>
-      <hr />
+      {formData.education.length > 1 && (
+        <>
+          <h2>Education</h2>
+          <hr />
+        </>
+      )}
       {formData.education.map((institution, index) => (
         <div key={institution.school + index}>
           {renderEducation(institution)}

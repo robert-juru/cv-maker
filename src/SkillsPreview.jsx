@@ -1,11 +1,18 @@
 import data from "./data";
 
-let skills = data.skills;
 export default function SkillsPreview({ formData }) {
+  const hasNonEmptyValue = Object.values(formData.skills).some(
+    (value) => value !== ""
+  );
   return (
     <article className="skills">
-      <h2>Skills</h2>
-      <hr />
+      {hasNonEmptyValue && (
+        <>
+          <h2>Skills</h2>
+          <hr />
+        </>
+      )}
+
       {formData.skills.languages && (
         <li className="languages">
           <strong>Languages: </strong>
