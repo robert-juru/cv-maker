@@ -3,11 +3,16 @@ import Education from "./Education.jsx";
 import Employment from "./Employment.jsx";
 import Projects from "./Projects.jsx";
 import Skills from "./Skills.jsx";
-import { useState } from "react";
-import { v4 as uuidv4 } from 'uuid';
+import { useState, Fragment } from "react";
+import { v4 as uuidv4 } from "uuid";
 
 export default function CvMaker({ formData, onFormDataChange }) {
   const [activeIndex, setActiveIndex] = useState(0);
+  const [currentItemIndex, setCurrentItemIndex] = useState({
+    education: null,
+    employment: null,
+    projects: null,
+  });
 
   function handleMultiInputChange(section, index, e) {
     //used for handling sections with more than one instance like Education
@@ -48,20 +53,88 @@ export default function CvMaker({ formData, onFormDataChange }) {
     console.log(updatedData);
   }
 
-  const newJob = {
-    companyName: `New Job`,
-    id: uuidv4(),
-  };
+  function handleDeleteAndClose(section, itemId) {
+    handleDeleteEntry(section, itemId);
+    handleSetCurrentItemIndex(section, null);
+  }
 
-  const newProject = {
-    projectName: `New Project`,
-    id: uuidv4(),
-  };
-  const newInstitute = {
-    school: `New Institute`,
-    id: uuidv4(),
-  };
+  function handleSetCurrentItemIndex(section, index) {
+    setCurrentItemIndex((prevState) => ({ ...prevState, [section]: index }));
+  }
 
+  function resetItemIndex(section, sectionIndex) {
+    const isActive = activeIndex === sectionIndex;
+    !isActive && currentItemIndex[section] !== null
+      ? handleSetCurrentItemIndex(section, null)
+      : null;
+  }
+
+  const newEntry = {
+    employment: {
+      companyName: `New Job`,
+      id: uuidv4(),
+    },
+    projects: {
+      projectName: `New Project`,
+      id: uuidv4(),
+    },
+    education: {
+      school: `New Institute`,
+      id: uuidv4(),
+    },
+  };
+  function renderSection(section, sectionTitle, sectionIndex, renderFunction) {
+    const isActive = activeIndex === sectionIndex;
+    console.log(isActive);
+    console.log("current item index" + currentItemIndex);
+    resetItemIndex(section, sectionIndex);
+    return isActive ? (
+      <>
+        {formData[section].map((item, index) => (
+          <Fragment key={item.id}>
+            <h3
+              onClick={() =>
+                handleSetCurrentItemIndex(
+                  section,
+                  currentItemIndex[section] === index ? null : index
+                )
+              }
+            >
+              {currentItemIndex[section] == null && item[sectionTitle]}
+              {console.log(item)}
+            </h3>
+            {currentItemIndex[section] === index && (
+              <>
+                {renderFunction(index)}
+                <div className="btn-container">
+                  <button
+                    type="button"
+                    onClick={() => handleSetCurrentItemIndex(section, null)}
+                  >
+                    Close
+                  </button>
+                  <button
+                    type="button"
+                    onClick={() => handleDeleteAndClose(section, item.id)}
+                  >
+                    Delete
+                  </button>
+                </div>
+              </>
+            )}
+          </Fragment>
+        ))}
+        {currentItemIndex[section] == null && (
+          <button
+            type="button"
+            onClick={() => handleAddEntry(section, newEntry[section])}
+          >
+            + Add
+          </button>
+        )}
+      </>
+    ) : null;
+  }
   return (
     <main className="cv-maker-container">
       <GeneralInformation
@@ -81,6 +154,11 @@ export default function CvMaker({ formData, onFormDataChange }) {
         isActive={activeIndex === 1}
         onShow={() => setActiveIndex(1)}
         onHide={() => setActiveIndex(null)}
+        currentItemIndex={currentItemIndex.education}
+        setCurrentItemIndex={(index) =>
+          handleSetCurrentItemIndex("education", index)
+        }
+        renderSection={renderSection}
       />
       <Employment
         formData={formData}
@@ -92,6 +170,11 @@ export default function CvMaker({ formData, onFormDataChange }) {
         isActive={activeIndex === 2}
         onShow={() => setActiveIndex(2)}
         onHide={() => setActiveIndex(null)}
+        currentItemIndex={currentItemIndex.employment}
+        setCurrentItemIndex={(index) =>
+          handleSetCurrentItemIndex("employment", index)
+        }
+        renderSection={renderSection}
       />
       <Projects
         formData={formData}
@@ -103,6 +186,11 @@ export default function CvMaker({ formData, onFormDataChange }) {
         isActive={activeIndex === 3}
         onShow={() => setActiveIndex(3)}
         onHide={() => setActiveIndex(null)}
+        currentItemIndex={currentItemIndex.projects}
+        setCurrentItemIndex={(index) =>
+          handleSetCurrentItemIndex("projects", index)
+        }
+        renderSection={renderSection}
       />
       <Skills
         formData={formData}

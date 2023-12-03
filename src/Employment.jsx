@@ -1,15 +1,15 @@
 import SectionHeader from "./SectionHeader";
-import { useState, Fragment } from "react";
+
 export default function Employment({
   formData,
   onInputChange,
   isActive,
   onShow,
   onHide,
-  onAddEntry,
-  onDeleteEntry,
+  currentItemIndex,
+  setCurrentItemIndex,
+  renderSection,
 }) {
-  const [currentItemIndex, setCurrentItemIndex] = useState(null);
   function renderJob(index) {
     const job = formData.employment[index];
     return (
@@ -84,14 +84,9 @@ export default function Employment({
     );
   }
 
-  {
-    !isActive && currentItemIndex !== null ? setCurrentItemIndex(null) : null;
-  }
-
-  function handleDeleteAndClose(itemId) {
-    onDeleteEntry("employment", itemId);
-    setCurrentItemIndex(null);
-  }
+  // {
+  //   !isActive && currentItemIndex !== null ? setCurrentItemIndex(null) : null;
+  // }
 
   return (
     <form className="employment">
@@ -101,45 +96,7 @@ export default function Employment({
         onHide={onHide}
         onShow={onShow}
       />
-      {isActive ? (
-        <>
-          {formData.employment.map((job, index) => (
-            <Fragment key={job + index}>
-              <h3
-                onClick={() =>
-                  setCurrentItemIndex(currentItemIndex === index ? null : index)
-                }
-              >
-                {currentItemIndex == null && job.companyName}
-              </h3>
-              {currentItemIndex === index && (
-                <>
-                  {renderJob(index)}
-                  <div className="btn-container">
-                    <button
-                      type="button"
-                      onClick={() => setCurrentItemIndex(null)}
-                    >
-                      Close
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => handleDeleteAndClose(job.id)}
-                    >
-                      Delete
-                    </button>
-                  </div>
-                </>
-              )}
-            </Fragment>
-          ))}
-          {currentItemIndex == null && (
-            <button type="button" onClick={onAddEntry}>
-              +Project
-            </button>
-          )}
-        </>
-      ) : null}
+      {renderSection("employment", "companyName", 2, renderJob)}
     </form>
   );
 }

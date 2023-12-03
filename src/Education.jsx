@@ -1,5 +1,4 @@
 import SectionHeader from "./SectionHeader";
-import { Fragment, useState } from "react";
 
 export default function Education({
   formData,
@@ -7,11 +6,10 @@ export default function Education({
   isActive,
   onShow,
   onHide,
-  onAddEntry,
-  onDeleteEntry,
+  currentItemIndex,
+  setCurrentItemIndex,
+  renderSection,
 }) {
-  const [currentItemIndex, setCurrentItemIndex] = useState(null);
-
   function renderEducation(index) {
     const institution = formData.education[index];
     return (
@@ -80,14 +78,10 @@ export default function Education({
     );
   }
 
-  {
-    !isActive && currentItemIndex !== null ? setCurrentItemIndex(null) : null;
-  }
+  // {
+  //   !isActive && currentItemIndex !== null ? setCurrentItemIndex(null) : null;
+  // }
 
-  function handleDeleteAndClose(itemId) {
-    onDeleteEntry("education", itemId);
-    setCurrentItemIndex(null);
-  }
   return (
     <form className="education">
       <SectionHeader
@@ -96,45 +90,7 @@ export default function Education({
         onHide={onHide}
         onShow={onShow}
       />
-      {isActive ? (
-        <>
-          {formData.education.map((institution, index) => (
-            <Fragment key={institution + index}>
-              <h3
-                onClick={() =>
-                  setCurrentItemIndex(currentItemIndex === index ? null : index)
-                }
-              >
-                {currentItemIndex == null && institution.school}
-              </h3>
-              {currentItemIndex === index && (
-                <>
-                  {renderEducation(index)}
-                  <div className="btn-container">
-                    <button
-                      type="button"
-                      onClick={() => setCurrentItemIndex(null)}
-                    >
-                      Close
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => handleDeleteAndClose(institution.id)}
-                    >
-                      Delete
-                    </button>
-                  </div>
-                </>
-              )}
-            </Fragment>
-          ))}
-          {currentItemIndex == null && (
-            <button type="button" onClick={onAddEntry}>
-              +Institution
-            </button>
-          )}
-        </>
-      ) : null}
+      {renderSection("education", "school", 1, renderEducation)}
     </form>
   );
 }

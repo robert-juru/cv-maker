@@ -1,5 +1,4 @@
 import SectionHeader from "./SectionHeader";
-import { useState, Fragment } from "react";
 
 export default function Projects({
   formData,
@@ -7,11 +6,10 @@ export default function Projects({
   isActive,
   onShow,
   onHide,
-  onAddEntry,
-  onDeleteEntry,
-  onFormDataChange,
+  currentItemIndex,
+  setCurrentItemIndex,
+  renderSection,
 }) {
-  const [currentItemIndex, setCurrentItemIndex] = useState(null);
 
   function renderProject(index) {
     const project = formData.projects[index];
@@ -42,7 +40,7 @@ export default function Projects({
             formData.projects[index].projectDescription &&
             formData.projects[index].projectDescription
               .split("\n")
-              .map((line, i) => line.trimStart())
+              .map((line) => line.trimStart())
               .join("\n")
           }
           onChange={(e) => onInputChange(index, e)}
@@ -54,14 +52,10 @@ export default function Projects({
     );
   }
 
-  {
-    !isActive && currentItemIndex !== null ? setCurrentItemIndex(null) : null;
-  }
+  // {
+  //   !isActive && currentItemIndex !== null ? setCurrentItemIndex(null) : null;
+  // }
 
-  function handleDeleteAndClose(itemId) {
-    onDeleteEntry("projects", itemId);
-    setCurrentItemIndex(null);
-  }
 
   return (
     <form className="projects">
@@ -71,45 +65,7 @@ export default function Projects({
         onHide={onHide}
         onShow={onShow}
       />
-      {isActive ? (
-        <>
-          {formData.projects.map((project, index) => (
-            <Fragment key={project + index}>
-              <h3
-                onClick={() =>
-                  setCurrentItemIndex(currentItemIndex === index ? null : index)
-                }
-              >
-                {currentItemIndex == null && project.projectName}
-              </h3>
-              {currentItemIndex === index && (
-                <>
-                  {renderProject(index)}
-                  <div className="btn-container">
-                    <button
-                      type="button"
-                      onClick={() => setCurrentItemIndex(null)}
-                    >
-                      Close
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => handleDeleteAndClose(project.id)}
-                    >
-                      Delete
-                    </button>
-                  </div>
-                </>
-              )}
-            </Fragment>
-          ))}
-          {currentItemIndex == null && (
-            <button type="button" onClick={onAddEntry}>
-              +Project
-            </button>
-          )}
-        </>
-      ) : null}
+      {renderSection("projects", "projectName", 3, renderProject)}
     </form>
   );
 }
