@@ -1,9 +1,16 @@
 import SectionHeader from "./SectionHeader";
+import { OptionalField, RecommendedField } from "./FieldType";
 
-export default function Skills({ formData, onInputChange, isActive, onShow, onHide }) {
+export default function Skills({
+  formData,
+  onInputChange,
+  isActive,
+  onShow,
+  onHide,
+}) {
   return (
-    <form className="skills">
-         <SectionHeader
+    <section className="skills">
+      <SectionHeader
         title="Skills"
         isActive={isActive}
         onHide={onHide}
@@ -11,7 +18,10 @@ export default function Skills({ formData, onInputChange, isActive, onShow, onHi
       />
       {isActive ? (
         <>
-          <label htmlFor="languages">Languages</label>
+          <label htmlFor="languages">
+            Languages
+            <RecommendedField />
+          </label>
           <input
             value={formData.skills.languages}
             onChange={(e) => onInputChange(e)}
@@ -19,7 +29,9 @@ export default function Skills({ formData, onInputChange, isActive, onShow, onHi
             id="languages"
             placeholder="Language (Proficiency Level)"
           />
-          <label htmlFor="programming-languages">Programming languages</label>
+          <label htmlFor="programming-languages">
+            Programming languages <RecommendedField />
+          </label>
           <input
             value={formData.skills.programmingLanguages}
             onChange={(e) => onInputChange(e)}
@@ -29,6 +41,7 @@ export default function Skills({ formData, onInputChange, isActive, onShow, onHi
           />
           <label htmlFor="frameworks-and-libraries">
             Frameworks and libraries
+            <OptionalField />
           </label>
           <input
             value={formData.skills.frameworksAndLibraries}
@@ -37,7 +50,9 @@ export default function Skills({ formData, onInputChange, isActive, onShow, onHi
             id="frameworks-and-libraries"
             placeholder="Share frameworks or libraries you're familiar with"
           />
-          <label htmlFor="tools">Tools</label>
+          <label htmlFor="tools">
+            Tools <OptionalField />
+          </label>
           <input
             value={formData.skills.tools}
             onChange={(e) => onInputChange(e)}
@@ -45,7 +60,9 @@ export default function Skills({ formData, onInputChange, isActive, onShow, onHi
             id="tools"
             placeholder="Enter other relevant tools or technologies"
           />
-          <label htmlFor="soft-skills">Soft skills</label>
+          <label htmlFor="soft-skills">
+            Soft skills <OptionalField />
+          </label>
           <input
             value={formData.skills.softSkills}
             onChange={(e) => onInputChange(e)}
@@ -55,6 +72,6 @@ export default function Skills({ formData, onInputChange, isActive, onShow, onHi
           />
         </>
       ) : null}
-    </form>
+    </section>
   );
 }

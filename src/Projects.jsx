@@ -1,4 +1,5 @@
 import SectionHeader from "./SectionHeader";
+import { RequiredField, OptionalField, RecommendedField } from "./FieldType";
 
 export default function Projects({
   formData,
@@ -12,7 +13,10 @@ export default function Projects({
     const project = formData.projects[index];
     return (
       <div key={project + index} className="projects">
-        <label htmlFor="project-name">Project Name</label>
+        <label htmlFor="project-name">
+          Project Name
+          <RequiredField />
+        </label>
         <input
           value={formData.projects[index].projectName}
           onChange={(e) => onInputChange(index, e)}
@@ -20,8 +24,13 @@ export default function Projects({
           type="project-name"
           id="project-name"
           placeholder="Enter the name of the project"
+          required
+          maxLength={50}
         />
-        <label htmlFor="project-link">Project Link</label>
+        <label htmlFor="project-link">
+          Project Link
+          <RecommendedField />
+        </label>
         <input
           value={formData.projects[index].projectLink}
           onChange={(e) => onInputChange(index, e)}
@@ -30,7 +39,10 @@ export default function Projects({
           id="project-link"
           placeholder="Add project link or repository URL (e.g. GitHub, GitLab, Bitbucket etc)"
         />
-        <label htmlFor="project-description">Project Description</label>
+        <label htmlFor="project-description">
+          Project Description
+          <OptionalField />
+        </label>
         <textarea
           rows={3}
           value={
@@ -44,12 +56,13 @@ export default function Projects({
           name="projectDescription"
           id="description"
           placeholder="Describe project details and use Enter to create new bullet points"
+          maxLength={300}
         />
       </div>
     );
   }
   return (
-    <form className="projects">
+    <section className="projects">
       <SectionHeader
         title="Projects"
         isActive={isActive}
@@ -57,6 +70,6 @@ export default function Projects({
         onShow={onShow}
       />
       {renderSection("projects", "projectName", 3, renderProject)}
-    </form>
+    </section>
   );
 }

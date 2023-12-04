@@ -85,7 +85,7 @@ export default function CvMaker({ formData, onFormDataChange }) {
       id: uuidv4(),
     },
   };
-  
+
   function renderSection(section, sectionTitle, sectionIndex, renderFunction) {
     const isActive = activeIndex === sectionIndex;
     resetItemIndex(section, sectionIndex);
@@ -142,54 +142,58 @@ export default function CvMaker({ formData, onFormDataChange }) {
   }
   return (
     <main className="cv-maker-container">
-      <ResumeActions
-        onLoadExample={() => onFormDataChange(exampleData)}
-        onClearResume={() => onFormDataChange(clearedData)}
-      />
-      <GeneralInformation
-        formData={formData}
-        onInputChange={(e) => handleSingleInputChange("generalInformation", e)}
-        isActive={activeIndex === 0}
-        onShow={() => setActiveIndex(0)}
-        onHide={() => setActiveIndex(null)}
-      />
-      <Education
-        formData={formData}
-        onInputChange={(index, e) =>
-          handleMultiInputChange("education", index, e)
-        }
-        isActive={activeIndex === 1}
-        onShow={() => setActiveIndex(1)}
-        onHide={() => setActiveIndex(null)}
-        renderSection={renderSection}
-      />
-      <Employment
-        formData={formData}
-        onInputChange={(index, e) =>
-          handleMultiInputChange("employment", index, e)
-        }
-        isActive={activeIndex === 2}
-        onShow={() => setActiveIndex(2)}
-        onHide={() => setActiveIndex(null)}
-        renderSection={renderSection}
-      />
-      <Projects
-        formData={formData}
-        onInputChange={(index, e) =>
-          handleMultiInputChange("projects", index, e)
-        }
-        isActive={activeIndex === 3}
-        onShow={() => setActiveIndex(3)}
-        onHide={() => setActiveIndex(null)}
-        renderSection={renderSection}
-      />
-      <Skills
-        formData={formData}
-        onInputChange={(e) => handleSingleInputChange("skills", e)}
-        isActive={activeIndex === 4}
-        onShow={() => setActiveIndex(4)}
-        onHide={() => setActiveIndex(null)}
-      />
+      <form className="cv-maker">
+        <ResumeActions
+          onLoadExample={() => onFormDataChange(exampleData)}
+          onClearResume={() => onFormDataChange(clearedData)}
+        />
+        <GeneralInformation
+          formData={formData}
+          onInputChange={(e) =>
+            handleSingleInputChange("generalInformation", e)
+          }
+          isActive={activeIndex === 0}
+          onShow={() => setActiveIndex(0)}
+          onHide={() => setActiveIndex(null)}
+        />
+        <Education
+          formData={formData}
+          onInputChange={(index, e) =>
+            handleMultiInputChange("education", index, e)
+          }
+          isActive={activeIndex === 1}
+          onShow={() => setActiveIndex(1)}
+          onHide={() => setActiveIndex(null)}
+          renderSection={renderSection}
+        />
+        <Employment
+          formData={formData}
+          onInputChange={(index, e) =>
+            handleMultiInputChange("employment", index, e)
+          }
+          isActive={activeIndex === 2}
+          onShow={() => setActiveIndex(2)}
+          onHide={() => setActiveIndex(null)}
+          renderSection={renderSection}
+        />
+        <Projects
+          formData={formData}
+          onInputChange={(index, e) =>
+            handleMultiInputChange("projects", index, e)
+          }
+          isActive={activeIndex === 3}
+          onShow={() => setActiveIndex(3)}
+          onHide={() => setActiveIndex(null)}
+          renderSection={renderSection}
+        />
+        <Skills
+          formData={formData}
+          onInputChange={(e) => handleSingleInputChange("skills", e)}
+          isActive={activeIndex === 4}
+          onShow={() => setActiveIndex(4)}
+          onHide={() => setActiveIndex(null)}
+        />
+      </form>
     </main>
   );
 }

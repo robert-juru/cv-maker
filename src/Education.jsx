@@ -1,4 +1,5 @@
 import SectionHeader from "./SectionHeader";
+import { RequiredField, OptionalField } from "./FieldType";
 
 export default function Education({
   formData,
@@ -12,7 +13,10 @@ export default function Education({
     const institution = formData.education[index];
     return (
       <div key={institution + index} className="education">
-        <label htmlFor="school">School</label>
+        <label htmlFor="school">
+          School
+          <RequiredField />
+        </label>
         <input
           value={formData.education[index].school}
           onChange={(e) => onInputChange(index, e)}
@@ -20,8 +24,12 @@ export default function Education({
           type="text"
           id="school"
           placeholder="Enter the name of the school/university you attended"
+          required
+          maxLength={50}
         />
-        <label htmlFor="degree">Degree</label>
+        <label htmlFor="degree">
+          Degree <RequiredField />
+        </label>
         <input
           value={formData.education[index].degree}
           onChange={(e) => onInputChange(index, e)}
@@ -29,8 +37,13 @@ export default function Education({
           type="text"
           id="degree"
           placeholder="Enter the degree / field of study"
+          required
+          maxLength={150}
         />
-        <label htmlFor="coursework">Relevant Coursework</label>
+        <label htmlFor="coursework">
+          Relevant Coursework
+          <OptionalField />
+        </label>
         <input
           value={formData.education[index].relevantCoursework}
           onChange={(e) => onInputChange(index, e)}
@@ -41,7 +54,9 @@ export default function Education({
         />
         <div id="education-date-inputs" className="date-inputs">
           <div className="start-date-container">
-            <label htmlFor="start-date">Start Date</label>
+            <label htmlFor="start-date">
+              Start Date <RequiredField />
+            </label>
             <input
               value={formData.education[index].startDate}
               onChange={(e) => onInputChange(index, e)}
@@ -49,10 +64,15 @@ export default function Education({
               type="text"
               id="start-date"
               placeholder="MM/YYYY"
+              required
+              minLength={7}
+              maxLength={7}
             />
           </div>
           <div className="end-date-container">
-            <label htmlFor="end-date">End Date</label>
+            <label htmlFor="end-date">
+              End Date <RequiredField />
+            </label>
             <input
               value={formData.education[index].endDate}
               onChange={(e) => onInputChange(index, e)}
@@ -60,10 +80,16 @@ export default function Education({
               type="text"
               id="end-date"
               placeholder="MM/YYYY or Present"
+              required
+              minLength={7}
+              maxLength={7}
             />
           </div>
         </div>
-        <label htmlFor="location">Location</label>
+        <label htmlFor="location">
+          Location
+          <OptionalField />
+        </label>
         <input
           value={formData.education[index].location}
           onChange={(e) => onInputChange(index, e)}
@@ -71,12 +97,13 @@ export default function Education({
           type="text"
           id="location"
           placeholder="City, Country"
+          maxLength={30}
         />
       </div>
     );
   }
   return (
-    <form className="education">
+    <section className="education">
       <SectionHeader
         title="Education"
         isActive={isActive}
@@ -84,6 +111,6 @@ export default function Education({
         onShow={onShow}
       />
       {renderSection("education", "school", 1, renderEducation)}
-    </form>
+    </section>
   );
 }
