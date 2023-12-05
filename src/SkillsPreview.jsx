@@ -1,5 +1,3 @@
-import data from "./data";
-
 export default function SkillsPreview({ formData }) {
   const hasNonEmptyValue = Object.values(formData.skills).some(
     (value) => value !== ""

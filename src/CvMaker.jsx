@@ -4,12 +4,12 @@ import Employment from "./Employment.jsx";
 import Projects from "./Projects.jsx";
 import Skills from "./Skills.jsx";
 import ResumeActions from "./ResumeActions.jsx";
-import { useState, Fragment } from "react";
+import { useState, Fragment, useRef } from "react";
 import { v4 as uuidv4 } from "uuid";
 import clearedData from "./cleared_data.jsx";
 import exampleData from "./data.jsx";
 
-export default function CvMaker({ formData, onFormDataChange }) {
+export default function CvMaker({ formData, onFormDataChange, handlePrint }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [currentItemIndex, setCurrentItemIndex] = useState({
     education: null,
@@ -146,6 +146,7 @@ export default function CvMaker({ formData, onFormDataChange }) {
         <ResumeActions
           onLoadExample={() => onFormDataChange(exampleData)}
           onClearResume={() => onFormDataChange(clearedData)}
+          onDownloadButton={() => handlePrint()}
         />
         <GeneralInformation
           formData={formData}

@@ -35,9 +35,13 @@ function renderEducation(institution) {
 }
 
 export default function EducationPreview({ formData }) {
+  const isNonEmpty =
+  formData.education.filter(
+    (item) => Object.values(item).filter((value) => value !== "").length >= 2
+  ).length > 0;
   return (
     <article className="education-container">
-      {formData.education.length > 1 && (
+      {isNonEmpty && (
         <>
           <h2>Education</h2>
           <hr />

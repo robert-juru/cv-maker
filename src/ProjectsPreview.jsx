@@ -1,4 +1,3 @@
-import { Fragment } from "react";
 let projectIdCounter = 0;
 
 function renderProjects(project) {
@@ -23,9 +22,13 @@ function renderProjects(project) {
 }
 
 export default function ProjectsPreview({ formData }) {
+  const isNonEmpty =
+    formData.projects.filter(
+      (item) => Object.values(item).filter((value) => value !== "").length >= 2
+    ).length > 0;
   return (
     <article className="projects">
-      {formData.projects.length > 1 && (
+      {isNonEmpty && (
         <>
           <h2>Projects</h2>
           <hr />

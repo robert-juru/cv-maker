@@ -10,9 +10,11 @@ function renderEmployment(job) {
       </div>
       <div className="job-info">
         <span className="job-position">{job.jobTitle}</span>
-        <span className="job-duration">
-          {job.startDate} - {job.endDate}
-        </span>
+        {job.startDate && (
+          <span className="job-duration">
+            {job.startDate} - {job.endDate}
+          </span>
+        )}
       </div>
       <div className="job-description">
         {job.jobDescription &&
@@ -29,9 +31,14 @@ function renderEmployment(job) {
 }
 
 export default function EmploymentPreview({ formData }) {
+  const isNonEmpty =
+    formData.employment.filter(
+      (item) => Object.values(item).filter((value) => value !== "").length >= 2
+    ).length > 0;
+
   return (
     <article className="job-experience-container">
-      {formData.employment.length > 1 && (
+      {isNonEmpty && (
         <>
           <h2>Employment</h2>
           <hr />

@@ -1,4 +1,8 @@
-export default function ResumeActions({ onLoadExample, onClearResume }) {
+export default function ResumeActions({
+  onLoadExample,
+  onClearResume,
+  onDownloadButton,
+}) {
   return (
     <div id="resume-actions-container">
       <div className="clear-load-btns">
@@ -9,7 +13,7 @@ export default function ResumeActions({ onLoadExample, onClearResume }) {
           Load Example
         </button>
       </div>
-      <button type="button" className="download-btn">
+      <button type="button" onClick={onDownloadButton} className="download-btn">
         <img src="src/assets/download-icon.svg"></img>
         <span>Download</span>
       </button>
