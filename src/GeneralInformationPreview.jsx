@@ -4,7 +4,7 @@ export default function GeneralInformationPreview({ formData }) {
       <div className="name-container">
         <h1 className="full-name">{formData.generalInformation.fullName}</h1>
       </div>
-      <div className="contact-container">
+      <div id="contact-container">
         {formData.generalInformation.email && (
           <a href="mailto:juru0188@gmail.com" className="mail">
             <img
@@ -15,7 +15,6 @@ export default function GeneralInformationPreview({ formData }) {
             <span className="underlined">
               {formData.generalInformation.email}
             </span>
-            &nbsp;|
           </a>
         )}
         {formData.generalInformation.linkedIn && (
@@ -25,7 +24,7 @@ export default function GeneralInformationPreview({ formData }) {
               src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/linkedin/linkedin-plain.svg"
               alt="linkedin icon"
             />
-            <span className="underlined">LinkedIn Profile </span>&nbsp;|
+            <span className="underlined">LinkedIn Profile </span>
           </a>
         )}
         {formData.generalInformation.gitHub && (
@@ -41,11 +40,9 @@ export default function GeneralInformationPreview({ formData }) {
             <span className="underlined">
               {formData.generalInformation.gitHub}
             </span>
-            &nbsp;|
           </a>
         )}
-        {formData.generalInformation.phoneNumber &&
-        (
+        {formData.generalInformation.phoneNumber && (
           <span className="phone-number">
             <img
               className="contact-icon"

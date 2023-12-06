@@ -50,15 +50,17 @@ p {
 .container {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  padding: 32px 72px;
   gap: 72px;
+}
+
+.app-container {
+  padding: 32px 72px;
 }
 
 .cv-preview {
   background-color: white;
-  padding:0px 48px;
-  max-height: 29.7cm;
-  min-width: 21cm;
+  padding: 0px 36px;
+  min-height: 25cm;
 }
 
 form > section {
@@ -68,10 +70,6 @@ form > section {
   flex-direction: column;
   padding: 16px;
   border-radius: 0.5rem;
-}
-
-section > :nth-child(2) > :first-child {
-  margin-top: 16px;
 }
 
 section > h3 {
@@ -126,10 +124,11 @@ textarea {
   gap: 8px;
 }
 
-.contact-container {
+#contact-container {
   display: flex;
   justify-content: center;
   align-items: center;
+  flex-wrap: wrap;
   gap: 8px;
   margin-bottom: 12px;
 }
@@ -140,6 +139,7 @@ textarea {
 .phone-number {
   display: flex;
   align-items: center;
+  gap: 0px;
 }
 
 li {
@@ -162,7 +162,8 @@ a .underlined {
   text-align: center;
 }
 
-.contact-icon {
+.contact-icon,
+.download-icon {
   width: 16px;
   height: 16px;
 }
@@ -185,7 +186,6 @@ a .underlined {
 .project-link {
   padding-left: 16px;
   letter-spacing: 1px;
-  line-height: normal;
 }
 .contact-icon {
   margin-right: 4px;
@@ -268,5 +268,88 @@ button:hover {
 
 /* Print preview */
 @page {
-  margin:20mm 10mm;
+  margin: 20mm 10mm;
+}
+
+@media (max-width: 1100px) {
+  .container {
+    grid-template-columns: 1fr;
+    gap: 72px;
+  }
+
+  .cv-preview {
+    order: 1;
+  }
+
+  .cv-maker-container {
+    order: 2;
+  }
+}
+
+@media (max-width: 640px) {
+  .container {
+    gap: 36px;
+  }
+
+  .app-container {
+    padding: 16px;
+  }
+
+  .cv-preview {
+    padding: 18px;
+    min-height: 15cm;
+  }
+
+  #contact-container,
+  #contact-container > * > *,
+  a {
+    font-size: 8px;
+    gap: 0px;
+  }
+
+  .contact-icon {
+    height: 8px;
+  }
+
+  p,
+  li,
+  span,
+  label,
+  input,
+  textarea,
+  button,
+  span,
+  .optional-field,
+  .recommended-field {
+    font-size: 10px;
+  }
+
+  a {
+    display: block;
+  }
+  h1 {
+    font-size: 20px;
+  }
+  h2 {
+    font-size: 14px;
+  }
+  h3 {
+    font-size: 12px;
+  }
+
+  form > section {
+    padding: 16px 8px;
+  }
+
+  button {
+    width: 80px;
+    border-radius: 0.6em;
+    padding: 2px 4px;
+    border: none;
+    cursor: pointer;
+  }
+
+  .contact-icon {
+    margin: 0;
+  }
 }

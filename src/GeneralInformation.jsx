@@ -45,6 +45,7 @@ export default function GeneralInformation({
             id="full-name"
             name="email"
             placeholder="Enter your email"
+            maxLength={50}
           />
           <label htmlFor="phone-number">
             Phone number <RecommendedField />
@@ -56,6 +57,7 @@ export default function GeneralInformation({
             id="full-name"
             name="phoneNumber"
             placeholder="Enter your phone number"
+            maxLength={15}
             />
           <div id="employment-date-inputs" className="date-inputs">
             <div className="linkedin-container">
@@ -83,6 +85,7 @@ export default function GeneralInformation({
                 type="text"
                 id="end-date"
                 placeholder="GitHub username"
+                maxLength={39} // maximum length allowed by GitHub
               />
             </div>
           </div>
