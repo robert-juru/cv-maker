@@ -73,8 +73,9 @@ form > section {
 }
 
 section > h3 {
-  padding-left: 16px;
+  padding-left: 40px;
   font-weight: normal;
+  font-style: italic;
   cursor: pointer;
 }
 
@@ -201,13 +202,31 @@ a .underlined {
 .section-header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
+}
+
+.section-name {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.section-icon {
+  height: 32px;
 }
 
 /*Buttons */
-
 .hide-btn,
 .show-btn {
+  width: 24px;
+  height: 24px;
   cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.rotated {
+  transform: rotate(180deg);
 }
 
 button {
