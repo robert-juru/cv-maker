@@ -1,5 +1,5 @@
 import SectionHeader from "./SectionHeader";
-import { RequiredField, OptionalField, RecommendedField } from "./FieldType";
+import { OptionalField, RecommendedField } from "./FieldType";
 
 export default function Employment({
   formData,
@@ -13,10 +13,7 @@ export default function Employment({
     const job = formData.employment[index];
     return (
       <div key={job + index} className="employment">
-        <label htmlFor="company-name">
-          Company Name
-          <RequiredField />
-        </label>
+        <label htmlFor="company-name">Company Name</label>
         <input
           value={formData.employment[index].companyName}
           onChange={(e) => onInputChange(index, e)}
@@ -27,10 +24,7 @@ export default function Employment({
           required
           maxLength={50}
         />
-        <label htmlFor="job-title">
-          Job Title
-          <RequiredField />
-        </label>
+        <label htmlFor="job-title">Job Title</label>
         <input
           value={formData.employment[index].jobTitle}
           onChange={(e) => onInputChange(index, e)}
@@ -56,10 +50,7 @@ export default function Employment({
         />
         <div id="employment-date-inputs" className="date-inputs">
           <div className="start-date-container">
-            <label htmlFor="start-date">
-              Start Date
-              <RequiredField />
-            </label>
+            <label htmlFor="start-date">Start Date</label>
             <input
               value={formData.employment[index].startDate}
               onChange={(e) => onInputChange(index, e)}
@@ -73,10 +64,7 @@ export default function Employment({
             />
           </div>
           <div className="end-date-container">
-            <label htmlFor="end-date">
-              End Date
-              <RequiredField />
-            </label>
+            <label htmlFor="end-date">End Date</label>
             <input
               value={formData.employment[index].endDate}
               onChange={(e) => onInputChange(index, e)}
@@ -105,7 +93,7 @@ export default function Employment({
           }
           onChange={(e) => onInputChange(index, e)}
           name="jobDescription"
-          id="job-description"
+          id="description"
           placeholder="Describe the main activities and responsabilities for this job"
           maxLength={400}
         />

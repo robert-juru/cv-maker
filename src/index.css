@@ -1,3 +1,4 @@
+/* General Formatting*/
 *,
 *::before,
 *::after {
@@ -32,6 +33,7 @@ body {
   background-color: #f3f4f6;
 }
 
+/*App design*/
 h1 {
   margin: 16px 0px 16px 0px;
   font-size: 32px;
@@ -280,16 +282,12 @@ button:hover {
   font-style: italic;
   color: grey;
 }
-
-.required-field {
-  color: red;
-}
-
 /* Print preview */
 @page {
   margin: 20mm 10mm;
 }
 
+/* Media Queries */
 @media (max-width: 1100px) {
   .container {
     grid-template-columns: 1fr;

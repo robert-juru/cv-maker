@@ -1,15 +1,14 @@
-import CvMaker from "./CvMaker";
-import CvPreview from "./CvPreview";
+import CvMaker from "./components/CvMaker/CvMaker.jsx"
+import CvPreview from "./components/CvPreview/CvPreview.jsx";
 import { useState, useRef } from "react";
 import data from "./data";
 import { useReactToPrint } from "react-to-print";
-import ResumeActions from "./ResumeActions";
+import ResumeActions from "./components/CvMaker/ResumeActions.jsx";
 import clearedData from "./cleared_data.jsx";
 import exampleData from "./data.jsx";
 
 function App() {
   const [formData, setFormData] = useState(data);
-  const formRef = useRef(null);
   const componentRef = useRef();
 
   function handleData(updatedData) {
@@ -18,20 +17,7 @@ function App() {
 
   const handlePrint = useReactToPrint({
     content: () => {
-      const form = formRef.current; // Access the form reference
-      if (form) {
-        const isValid = form.checkValidity(); // Check form validity
-
-        if (isValid) {
-          return componentRef.current;
-        } else {
-          console.log("Form is not valid. Cannot print.");
-          return null;
-        }
-      } else {
-        console.log("Form reference not found.");
-        return null;
-      }
+      return componentRef.current;
     },
     documentTitle: `${formData.generalInformation.fullName}'s Resume`,
   });
@@ -44,12 +30,7 @@ function App() {
         onDownloadButton={() => handlePrint()}
       />
       <div className="container">
-        <CvMaker
-          formData={formData}
-          onFormDataChange={handleData}
-          handlePrint={handlePrint}
-          formRef={formRef}
-        />
+        <CvMaker formData={formData} onFormDataChange={handleData} />
         <CvPreview formData={formData} reference={componentRef} />
       </div>
     </div>

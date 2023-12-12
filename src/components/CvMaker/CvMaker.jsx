@@ -3,17 +3,10 @@ import Education from "./Education.jsx";
 import Employment from "./Employment.jsx";
 import Projects from "./Projects.jsx";
 import Skills from "./Skills.jsx";
-import ResumeActions from "./ResumeActions.jsx";
-import { useState, Fragment, useRef } from "react";
+import { useState, Fragment } from "react";
 import { v4 as uuidv4 } from "uuid";
 
-
-export default function CvMaker({
-  formData,
-  onFormDataChange,
-  handlePrint,
-  formRef,
-}) {
+export default function CvMaker({ formData, onFormDataChange }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [currentItemIndex, setCurrentItemIndex] = useState({
     education: null,
@@ -105,7 +98,8 @@ export default function CvMaker({
                 )
               }
             >
-              {currentItemIndex[section] == null && item[sectionTitle]}
+              {currentItemIndex[section] == null &&
+                (item[sectionTitle] || `Untitled`)}
             </h3>
             {currentItemIndex[section] === index && (
               <>
@@ -146,8 +140,7 @@ export default function CvMaker({
   }
   return (
     <main className="cv-maker-container">
-      <form ref={formRef} id="cv=form" className="cv-maker">
-       
+      <form id="cv=form" className="cv-maker">
         <GeneralInformation
           formData={formData}
           onInputChange={(e) =>

@@ -1,5 +1,5 @@
 import SectionHeader from "./SectionHeader";
-import { RequiredField, OptionalField, RecommendedField } from "./FieldType";
+import { OptionalField, RecommendedField } from "./FieldType";
 
 export default function GeneralInformation({
   formData,
@@ -18,10 +18,7 @@ export default function GeneralInformation({
       />
       {isActive ? (
         <>
-          <label htmlFor="full-name">
-            Full Name
-            <RequiredField />
-          </label>
+          <label htmlFor="full-name">Full Name</label>
 
           <input
             value={formData.generalInformation.fullName}
@@ -42,7 +39,7 @@ export default function GeneralInformation({
             value={formData.generalInformation.email}
             onChange={(e) => onInputChange(e)}
             type="email"
-            id="full-name"
+            id="email"
             name="email"
             placeholder="Enter your email"
             maxLength={50}
@@ -54,11 +51,11 @@ export default function GeneralInformation({
             value={formData.generalInformation.phoneNumber}
             onChange={(e) => onInputChange(e)}
             type="tel"
-            id="full-name"
+            id="phone-number"
             name="phoneNumber"
             placeholder="Enter your phone number"
             maxLength={15}
-            />
+          />
           <div id="employment-date-inputs" className="date-inputs">
             <div className="linkedin-container">
               <label htmlFor="linkedin">
@@ -83,7 +80,7 @@ export default function GeneralInformation({
                 onChange={(e) => onInputChange(e)}
                 name="gitHub"
                 type="text"
-                id="end-date"
+                id="github"
                 placeholder="GitHub username"
                 maxLength={39} // maximum length allowed by GitHub
               />

@@ -13,8 +13,8 @@ export default function ResumeActions({
           Load Example
         </button>
       </div>
-      <button type="button" onClick={onDownloadButton} className="download-btn">
-        <img  className="download-icon" src="src/assets/download-icon.svg"></img>
+      <button type="submit" onClick={onDownloadButton} className="download-btn">
+        <img className="download-icon" src="src/assets/download-icon.svg"></img>
         Download
       </button>
     </div>

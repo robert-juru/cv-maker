@@ -1,5 +1,5 @@
 import SectionHeader from "./SectionHeader";
-import { RequiredField, OptionalField, RecommendedField } from "./FieldType";
+import { OptionalField, RecommendedField } from "./FieldType";
 
 export default function Projects({
   formData,
@@ -15,7 +15,6 @@ export default function Projects({
       <div key={project + index} className="projects">
         <label htmlFor="project-name">
           Project Name
-          <RequiredField />
         </label>
         <input
           value={formData.projects[index].projectName}
@@ -54,7 +53,7 @@ export default function Projects({
           }
           onChange={(e) => onInputChange(index, e)}
           name="projectDescription"
-          id="description"
+          id="project-description"
           placeholder="Describe project details and use Enter to create new bullet points"
           maxLength={300}
         />
@@ -73,5 +72,3 @@ export default function Projects({
     </section>
   );
 }
-
-
