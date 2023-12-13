@@ -14,7 +14,7 @@ export default function ResumeActions({
         </button>
       </div>
       <button type="submit" onClick={onDownloadButton} className="download-btn">
-        <img className="download-icon" src="/assets/download-icon.svg"></img>
+        <img className="download-icon" src="/download-icon.svg"></img>
         Download
       </button>
     </div>
