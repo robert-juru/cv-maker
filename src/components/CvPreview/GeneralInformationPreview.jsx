@@ -9,7 +9,7 @@ export default function GeneralInformationPreview({ formData }) {
           <a href="mailto:juru0188@gmail.com" className="mail">
             <img
               className="contact-icon"
-              src="/assets/mail2.svg"
+              src="/mail2.svg"
               alt="mail icon"
             />
             <span className="underlined">
@@ -46,7 +46,7 @@ export default function GeneralInformationPreview({ formData }) {
           <span className="phone-number">
             <img
               className="contact-icon"
-              src="/assets/phone.svg"
+              src="/phone.svg"
               alt="phone icon"
             />
             <span>{formData.generalInformation.phoneNumber}</span>
