@@ -1,13 +1,8 @@
 import SectionHeader from "./SectionHeader";
 import { OptionalField, RecommendedField } from "./FieldType";
-
-export default function Skills({
-  formData,
-  onInputChange,
-  isActive,
-  onShow,
-  onHide,
-}) {
+import PropTypes from "prop-types";
+import { formDataPropTypes } from "../PropTypesDefinitions";
+function Skills({ formData, onInputChange, isActive, onShow, onHide }) {
   return (
     <section className="skills">
       <SectionHeader
@@ -75,3 +70,13 @@ export default function Skills({
     </section>
   );
 }
+
+Skills.propTypes = {
+  formData: formDataPropTypes,
+  onInputChange: PropTypes.func.isRequired,
+  isActive: PropTypes.bool.isRequired,
+  onShow: PropTypes.func.isRequired,
+  onHide: PropTypes.func.isRequired,
+};
+
+export default Skills;

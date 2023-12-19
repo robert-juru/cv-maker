@@ -1,7 +1,8 @@
 import SectionHeader from "./SectionHeader";
 import { OptionalField, RecommendedField } from "./FieldType";
-
-export default function Projects({
+import PropTypes from "prop-types";
+import { formDataPropTypes } from "../PropTypesDefinitions";
+function Projects({
   formData,
   onInputChange,
   isActive,
@@ -13,9 +14,7 @@ export default function Projects({
     const project = formData.projects[index];
     return (
       <div key={project + index} className="projects">
-        <label htmlFor="project-name">
-          Project Name
-        </label>
+        <label htmlFor="project-name">Project Name</label>
         <input
           value={formData.projects[index].projectName}
           onChange={(e) => onInputChange(index, e)}
@@ -72,3 +71,14 @@ export default function Projects({
     </section>
   );
 }
+
+Projects.propTypes = {
+  formData: formDataPropTypes,
+  onInputChange: PropTypes.func.isRequired,
+  isActive: PropTypes.bool.isRequired,
+  onShow: PropTypes.func.isRequired,
+  onHide: PropTypes.func.isRequired,
+  renderSection: PropTypes.func.isRequired,
+};
+
+export default Projects;

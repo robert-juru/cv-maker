@@ -1,4 +1,6 @@
-export default function GeneralInformationPreview({ formData }) {
+import { formDataPropTypes } from "../PropTypesDefinitions";
+
+function GeneralInformationPreview({ formData }) {
   return (
     <article className="general-information">
       <div className="name-container">
@@ -7,11 +9,7 @@ export default function GeneralInformationPreview({ formData }) {
       <div id="contact-container">
         {formData.generalInformation.email && (
           <a href="mailto:juru0188@gmail.com" className="mail">
-            <img
-              className="contact-icon"
-              src="/mail2.svg"
-              alt="mail icon"
-            />
+            <img className="contact-icon" src="/mail2.svg" alt="mail icon" />
             <span className="underlined">
               {formData.generalInformation.email}
             </span>
@@ -44,11 +42,7 @@ export default function GeneralInformationPreview({ formData }) {
         )}
         {formData.generalInformation.phoneNumber && (
           <span className="phone-number">
-            <img
-              className="contact-icon"
-              src="/phone.svg"
-              alt="phone icon"
-            />
+            <img className="contact-icon" src="/phone.svg" alt="phone icon" />
             <span>{formData.generalInformation.phoneNumber}</span>
           </span>
         )}
@@ -57,3 +51,9 @@ export default function GeneralInformationPreview({ formData }) {
     </article>
   );
 }
+
+GeneralInformationPreview.propTypes = {
+  formData: formDataPropTypes,
+};
+
+export default GeneralInformationPreview;

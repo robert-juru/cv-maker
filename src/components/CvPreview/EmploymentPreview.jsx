@@ -1,9 +1,8 @@
-let jobIdCounter = 0;
+import { formDataPropTypes } from "../PropTypesDefinitions";
 
 function renderEmployment(job) {
-  jobIdCounter++;
   return (
-    <div key={job.companyName + jobIdCounter} className="employment-info">
+    <div key={job.id} className="employment-info">
       <div className="company-info">
         <h3 className="company-name-cv">{job.companyName}</h3>
         <span className="company-location">{job.companyLocation}</span>
@@ -27,10 +26,9 @@ function renderEmployment(job) {
       </div>
     </div>
   );
-  // });
 }
 
-export default function EmploymentPreview({ formData }) {
+function EmploymentPreview({ formData }) {
   const isNonEmpty =
     formData.employment.filter(
       (item) => Object.values(item).filter((value) => value !== "").length >= 2
@@ -45,9 +43,15 @@ export default function EmploymentPreview({ formData }) {
         </>
       )}
 
-      {formData.employment.map((job, index) => (
-        <div key={job.jobName + index}>{renderEmployment(job)}</div>
+      {formData.employment.map((job) => (
+        <div key={job.id}>{renderEmployment(job)}</div>
       ))}
     </article>
   );
 }
+
+EmploymentPreview.propTypes = {
+  formData: formDataPropTypes,
+};
+
+export default EmploymentPreview;

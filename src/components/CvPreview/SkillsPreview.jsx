@@ -1,4 +1,6 @@
-export default function SkillsPreview({ formData }) {
+import { formDataPropTypes } from "../PropTypesDefinitions";
+
+function SkillsPreview({ formData }) {
   const hasNonEmptyValue = Object.values(formData.skills).some(
     (value) => value !== ""
   );
@@ -44,3 +46,9 @@ export default function SkillsPreview({ formData }) {
     </article>
   );
 }
+
+SkillsPreview.propTypes = {
+  formData: formDataPropTypes,
+};
+
+export default SkillsPreview;

@@ -1,4 +1,6 @@
-export default function SectionHeader({ isActive, onHide, onShow, title }) {
+import PropTypes from "prop-types";
+
+function SectionHeader({ isActive, onHide, onShow, title }) {
   return (
     <div className="section-header">
       <div className="section-name">
@@ -18,3 +20,12 @@ export default function SectionHeader({ isActive, onHide, onShow, title }) {
     </div>
   );
 }
+
+SectionHeader.propTypes = {
+  isActive: PropTypes.bool.isRequired,
+  onShow: PropTypes.func.isRequired,
+  onHide: PropTypes.func.isRequired,
+  title: PropTypes.string.isRequired,
+};
+
+export default SectionHeader;

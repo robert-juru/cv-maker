@@ -3,8 +3,10 @@ import EducationPreview from "./EducationPreview.jsx";
 import EmploymentPreview from "./EmploymentPreview.jsx";
 import ProjectsPreview from "./ProjectsPreview.jsx";
 import SkillsPreview from "./SkillsPreview.jsx";
+import PropTypes from "prop-types";
+import { formDataPropTypes } from "../PropTypesDefinitions.jsx";
 
-export default function CvPreview({ formData, reference }) {
+function CvPreview({ formData, reference }) {
   return (
     <section className="cv-preview" ref={reference}>
       <GeneralInformationPreview formData={formData} />
@@ -15,3 +17,12 @@ export default function CvPreview({ formData, reference }) {
     </section>
   );
 }
+
+CvPreview.propTypes = {
+  formData: formDataPropTypes,
+  reference: PropTypes.oneOfType([
+    PropTypes.func,
+    PropTypes.shape({ current: PropTypes.instanceOf(Element) }),
+  ]).isRequired,
+};
+export default CvPreview;

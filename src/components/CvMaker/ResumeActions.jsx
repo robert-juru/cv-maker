@@ -1,8 +1,6 @@
-export default function ResumeActions({
-  onLoadExample,
-  onClearResume,
-  onDownloadButton,
-}) {
+import PropTypes from "prop-types";
+
+function ResumeActions({ onLoadExample, onClearResume, onDownloadButton }) {
   return (
     <div id="resume-actions-container">
       <div className="clear-load-btns">
@@ -20,3 +18,10 @@ export default function ResumeActions({
     </div>
   );
 }
+
+ResumeActions.propTypes = {
+  onDownloadButton: PropTypes.func.isRequired,
+  onClearResume: PropTypes.func.isRequired,
+  onLoadExample: PropTypes.func.isRequired,
+};
+export default ResumeActions;

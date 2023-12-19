@@ -1,7 +1,9 @@
 import SectionHeader from "./SectionHeader";
 import { OptionalField, RecommendedField } from "./FieldType";
+import PropTypes from "prop-types";
+import { formDataPropTypes } from "../PropTypesDefinitions";
 
-export default function Employment({
+function Employment({
   formData,
   onInputChange,
   isActive,
@@ -12,7 +14,7 @@ export default function Employment({
   function renderJob(index) {
     const job = formData.employment[index];
     return (
-      <div key={job + index} className="employment">
+      <div key={job.id} className="employment">
         <label htmlFor="company-name">Company Name</label>
         <input
           value={formData.employment[index].companyName}
@@ -112,3 +114,14 @@ export default function Employment({
     </section>
   );
 }
+
+Employment.propTypes = {
+  formData: formDataPropTypes,
+  onInputChange: PropTypes.func.isRequired,
+  isActive: PropTypes.bool.isRequired,
+  onShow: PropTypes.func.isRequired,
+  onHide: PropTypes.func.isRequired,
+  renderSection: PropTypes.func.isRequired,
+};
+
+export default Employment;

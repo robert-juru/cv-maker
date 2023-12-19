@@ -1,12 +1,8 @@
-let institutionIdCounter = 0;
+import { formDataPropTypes } from "../PropTypesDefinitions";
 
 function renderEducation(institution) {
-  institutionIdCounter++;
   return (
-    <div
-      key={institution.school + institutionIdCounter}
-      className="institution-info"
-    >
+    <div key={institution.id} className="institution-info">
       <div className="institution-general">
         <h3 className="institution-name">
           <strong>{institution.school}</strong>
@@ -34,11 +30,11 @@ function renderEducation(institution) {
   );
 }
 
-export default function EducationPreview({ formData }) {
+function EducationPreview({ formData }) {
   const isNonEmpty =
-  formData.education.filter(
-    (item) => Object.values(item).filter((value) => value !== "").length >= 2
-  ).length > 0;
+    formData.education.filter(
+      (item) => Object.values(item).filter((value) => value !== "").length >= 2
+    ).length > 0;
   return (
     <article className="education-container">
       {isNonEmpty && (
@@ -47,11 +43,15 @@ export default function EducationPreview({ formData }) {
           <hr />
         </>
       )}
-      {formData.education.map((institution, index) => (
-        <div key={institution.school + index}>
-          {renderEducation(institution)}
-        </div>
+      {formData.education.map((institution) => (
+        <div key={institution.id}>{renderEducation(institution)}</div>
       ))}
     </article>
   );
 }
+
+EducationPreview.propTypes = {
+  formData: formDataPropTypes,
+};
+
+export default EducationPreview;

@@ -1,7 +1,9 @@
 import SectionHeader from "./SectionHeader";
 import { OptionalField, RecommendedField } from "./FieldType";
+import PropTypes from "prop-types";
+import { formDataPropTypes } from "../PropTypesDefinitions";
 
-export default function GeneralInformation({
+function GeneralInformation({
   formData,
   onInputChange,
   isActive,
@@ -102,3 +104,13 @@ export default function GeneralInformation({
     </section>
   );
 }
+
+GeneralInformation.propTypes = {
+  formData: formDataPropTypes,
+  onInputChange: PropTypes.func.isRequired,
+  isActive: PropTypes.bool.isRequired,
+  onShow: PropTypes.func.isRequired,
+  onHide: PropTypes.func.isRequired,
+};
+
+export default GeneralInformation;

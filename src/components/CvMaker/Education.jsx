@@ -1,7 +1,8 @@
 import SectionHeader from "./SectionHeader";
 import { OptionalField } from "./FieldType";
-
-export default function Education({
+import PropTypes from "prop-types";
+import { formDataPropTypes } from "../PropTypesDefinitions";
+function Education({
   formData,
   onInputChange,
   isActive,
@@ -106,3 +107,14 @@ export default function Education({
     </section>
   );
 }
+
+Education.propTypes = {
+  formData: formDataPropTypes,
+  onInputChange: PropTypes.func.isRequired,
+  isActive: PropTypes.bool.isRequired,
+  onShow: PropTypes.func.isRequired,
+  onHide: PropTypes.func.isRequired,
+  renderSection: PropTypes.func.isRequired,
+};
+
+export default Education;

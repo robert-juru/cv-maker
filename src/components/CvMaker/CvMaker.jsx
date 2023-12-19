@@ -5,8 +5,10 @@ import Projects from "./Projects.jsx";
 import Skills from "./Skills.jsx";
 import { useState, Fragment } from "react";
 import { v4 as uuidv4 } from "uuid";
+import PropTypes from "prop-types";
+import { formDataPropTypes } from "../PropTypesDefinitions.jsx";
 
-export default function CvMaker({ formData, onFormDataChange }) {
+function CvMaker({ formData, onFormDataChange }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const [currentItemIndex, setCurrentItemIndex] = useState({
     education: null,
@@ -58,7 +60,9 @@ export default function CvMaker({ formData, onFormDataChange }) {
   }
 
   function handleSetCurrentItemIndex(section, index) {
-    setCurrentItemIndex((prevState) => ({ ...prevState, [section]: index }));
+    setTimeout(() => {
+      setCurrentItemIndex((prevState) => ({ ...prevState, [section]: index }));
+    }, 0);
   }
 
   function resetItemIndex(section, sectionIndex) {
@@ -72,14 +76,25 @@ export default function CvMaker({ formData, onFormDataChange }) {
     employment: {
       companyName: `New Job`,
       id: uuidv4(),
+      jobTitle: "",
+      jobDescription: "",
+      startDate: "",
+      endDate: "",
+      companyLocation: "",
     },
     projects: {
       projectName: `New Project`,
       id: uuidv4(),
+      projectLink: "",
+      projectDescription: "",
     },
     education: {
       school: `New Institute`,
       id: uuidv4(),
+      degree: "",
+      startDate: "",
+      endDate: "",
+      location: "",
     },
   };
 
@@ -191,3 +206,9 @@ export default function CvMaker({ formData, onFormDataChange }) {
     </main>
   );
 }
+CvMaker.propTypes = {
+  formData: formDataPropTypes,
+  onFormDataChange: PropTypes.func.isRequired,
+};
+
+export default CvMaker;

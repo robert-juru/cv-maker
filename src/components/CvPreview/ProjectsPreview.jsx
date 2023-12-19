@@ -1,9 +1,8 @@
-let projectIdCounter = 0;
+import { formDataPropTypes } from "../PropTypesDefinitions";
 
 function renderProjects(project) {
-  projectIdCounter++;
   return (
-    <div key={project.projectName + projectIdCounter} className="project-info">
+    <div key={project.id} className="project-info">
       <h3 className="project-name-cv">{project.projectName}</h3>
       <a href={project.projectLink} className="project-link">
         <em>{project.projectLink}</em>
@@ -11,8 +10,8 @@ function renderProjects(project) {
       <ul className="project-details">
         {project.projectDescription &&
           project.projectDescription
-            .trim() // Remove leading/trailing whitespace
-            .split("\n") // Split the string by newline characters
+            .trim()
+            .split("\n")
             .map((detail, detailIndex) => (
               <li key={detailIndex}>{detail.trim()}</li>
             ))}
@@ -21,7 +20,7 @@ function renderProjects(project) {
   );
 }
 
-export default function ProjectsPreview({ formData }) {
+function ProjectsPreview({ formData }) {
   const isNonEmpty =
     formData.projects.filter(
       (item) => Object.values(item).filter((value) => value !== "").length >= 2
@@ -35,9 +34,15 @@ export default function ProjectsPreview({ formData }) {
         </>
       )}
 
-      {formData.projects.map((project, index) => (
-        <div key={project.projectName + index}>{renderProjects(project)}</div>
+      {formData.projects.map((project) => (
+        <div key={project.id}>{renderProjects(project)}</div>
       ))}
     </article>
   );
 }
+
+ProjectsPreview.propTypes = {
+  formData: formDataPropTypes,
+};
+
+export default ProjectsPreview;
